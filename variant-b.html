@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nate Thomas — AI Product Leader & Builder</title>
+<style>
+  :root {
+    --paper: #faf9f6;
+    --ink: #16150f;
+    --dim: #6f6a5e;
+    --rule: #e4e0d6;
+    --accent: #b5461d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: Georgia, "Times New Roman", serif; }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+  .topline {
+    display: flex; justify-content: space-between;
+    padding: 22px 0; border-bottom: 1px solid var(--ink);
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+  }
+  .topline a { color: var(--ink); text-decoration: none; margin-left: 26px; }
+  .topline a:hover { color: var(--accent); }
+
+  header.hero { padding: 110px 0 90px; border-bottom: 1px solid var(--rule); }
+  .issue {
+    font-size: 13px; color: var(--accent); letter-spacing: .16em;
+    text-transform: uppercase; margin-bottom: 36px;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(52px, 8.5vw, 110px);
+    line-height: 0.98; letter-spacing: -0.025em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    margin-top: 64px; align-items: start;
+  }
+  .hero-grid .lede {
+    font-family: Georgia, serif; font-size: 21px; line-height: 1.55; color: var(--ink);
+  }
+  .hero-grid .facts { font-size: 14px; color: var(--dim); }
+  .hero-grid .facts div { padding: 12px 0; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; }
+  .hero-grid .facts b { color: var(--ink); font-weight: 600; }
+
+  section { padding: 80px 0; }
+  .sec-label {
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 48px;
+  }
+  .sec-label::before { content: "— "; color: var(--accent); }
+
+  .entry { display: grid; grid-template-columns: 90px 1fr 1.4fr; gap: 48px; padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  .entry .yr { font-family: Georgia, serif; font-style: italic; font-size: 18px; color: var(--dim); }
+  .entry .role h3 { font-family: Georgia, serif; font-weight: 400; font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .entry .role .title { font-size: 14px; color: var(--dim); }
+  .entry .desc { font-size: 15px; color: #3d3a32; }
+  .entry .desc .num { font-family: Georgia, serif; font-style: italic; color: var(--accent); }
+
+  .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .proj a { text-decoration: none; color: var(--ink); display: block; padding: 40px 0; border-top: 2px solid var(--ink); }
+  .proj a:hover h3 { color: var(--accent); }
+  .proj .k { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .proj h3 { font-family: Georgia, serif; font-weight: 400; font-size: 36px; margin: 16px 0 14px; transition: color .2s; }
+  .proj p { font-size: 15px; color: #3d3a32; max-width: 46ch; }
+  .proj .url { display: inline-block; margin-top: 20px; font-size: 13px; color: var(--accent); letter-spacing: .06em; }
+
+  blockquote {
+    padding: 100px 0;
+    font-family: Georgia, serif; font-style: italic;
+    font-size: clamp(30px, 4.5vw, 52px); line-height: 1.25; letter-spacing: -0.01em;
+    text-align: center; max-width: 22ch; margin: 0 auto;
+  }
+  blockquote span { color: var(--accent); }
+
+  footer { border-top: 1px solid var(--ink); padding: 60px 0 48px; }
+  footer .big { font-family: Georgia, serif; font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.02em; margin-bottom: 36px; }
+  footer .links a {
+    color: var(--ink); font-size: 15px; text-decoration: none;
+    margin-right: 36px; border-bottom: 1px solid var(--accent);
+  }
+  footer .links a:hover { color: var(--accent); }
+  footer .fine { margin-top: 48px; font-size: 12px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
+
+  @media (max-width: 760px) {
+    .hero-grid, .proj { grid-template-columns: 1fr; gap: 32px; }
+    .entry { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topline">
+    <span>Nate Thomas</span>
+    <span>
+      <a href="#work">Work</a><a href="#builder">Builder</a><a href="#contact">Contact</a>
+    </span>
+  </div>
+
+  <header class="hero">
+    <div class="issue">Product · AI · Toronto — Est. builder, 2021</div>
+    <h1>Products that <em>think,</em><br>shipped by someone <em>who builds.</em></h1>
+    <div class="hero-grid">
+      <p class="lede">I'm a product leader at Momentus Technologies, owning Ask Momentus — the company's flagship AI product — and its AI platform strategy. Before that: enterprise infrastructure at Pendo, and an LLM agent at Cvent back when that took explaining.</p>
+      <div class="facts">
+        <div><b>Currently</b><span>AI Product Manager, Momentus</span></div>
+        <div><b>Flagship</b><span>Ask Momentus + Agent Builder</span></div>
+        <div><b>Side quests</b><span>StackKeep (founder), TennisBud</span></div>
+        <div><b>Based in</b><span>Toronto, ON</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="sec-label">Selected work</div>
+
+    <div class="entry">
+      <div class="yr">'26 —</div>
+      <div class="role"><h3>Momentus Technologies</h3><div class="title">AI Product Manager</div></div>
+      <div class="desc">Own the company's flagship AI product, Ask Momentus — <span class="num">+10% adoption</span> and a full UX overhaul. Evolved it toward an Agent Builder model adopted across teams, and wrote the evals strategy now used by every product team to measure AI quality.</div>
+    </div>
+
+    <div class="entry">
+      <div class="yr">'25—'26</div>
+      <div class="role"><h3>Pendo</h3><div class="title">Product Manager, Platform &amp; Enterprise</div></div>
+      <div class="desc">Shipped 0-to-1 multi-IdP SSO (Okta, ADFS, AzureAD) after surfacing it as the enterprise blocker — <span class="num">$10M+ ARR</span> from Fortune 500 accounts. Led internationalization across the platform and cut enterprise setup time by <span class="num">40%</span>.</div>
+    </div>
+
+    <div class="entry">
+      <div class="yr">'22—'24</div>
+      <div class="role"><h3>Cvent</h3><div class="title">Associate Product Manager</div></div>
+      <div class="desc">Led 0-to-1 discovery and validation of an LLM-powered onboarding agent, live with thousands of customers (<span class="num">+5 CSAT</span>). Recovered <span class="num">$500k+ ARR</span> via SQL cohort analysis and pre-renewal activation campaigns.</div>
+    </div>
+  </section>
+
+  <section id="builder">
+    <div class="sec-label">Things I build for myself</div>
+    <div class="proj">
+      <a href="https://stackkeep.com" target="_blank" rel="noopener">
+        <span class="k">Founder — Agentic SaaS</span>
+        <h3>StackKeep</h3>
+        <p>An AI agent that finds wasted SaaS spend in your Google Workspace and cleans it up in Slack. Charges 20% of verified savings, nothing otherwise. The startup that made me an AI builder.</p>
+        <span class="url">stackkeep.com →</span>
+      </a>
+      <a href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
+        <span class="k">Side project — Open data</span>
+        <h3>TennisBud</h3>
+        <p>Toronto's tennis courts, mapped and filterable — lights, distance, court count — with a heuristic that estimates how busy each park is before you leave the house.</p>
+        <span class="url">tennisbud.vercel.app →</span>
+      </a>
+    </div>
+  </section>
+
+  <blockquote>"The best AI products don't feel like AI. They feel like the product <span>finally doing its job.</span>"</blockquote>
+
+  <footer id="contact">
+    <div class="big serif">Say hello.</div>
+    <div class="links">
+      <a href="mailto:nathansamthomas@gmail.com">nathansamthomas@gmail.com</a>
+      <a href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
+    </div>
+    <div class="fine">© 2026 Nate Thomas — Toronto, ON</div>
+  </footer>
+
+</div>
+</body>
+</html>

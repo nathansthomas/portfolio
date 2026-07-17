@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nate Thomas — AI Product Manager & Builder</title>
+<meta name="description" content="Nate Thomas is an AI product manager at Momentus Technologies, where he owns Ask Momentus and the company's AI platform work. Founder of StackKeep. Builder of TennisBud. Based in Toronto.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d9ff3d'/><text x='50' y='72' font-size='64' text-anchor='middle' font-family='Arial Black' font-weight='900'>N</text></svg>">
+<style>
+  :root {
+    --paper: #f4f1e8;
+    --ink: #14130e;
+    --dim: #6b6558;
+    --rule: #ddd6c6;
+    --lime: #d9ff3d;
+    --lime-deep: #b8e02a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .serif { font-family: Georgia, "Times New Roman", serif; }
+  .loud {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
+  }
+  .hl { background: var(--lime); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  ::selection { background: var(--lime); }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── ticker ─────────────────────────── */
+  .ticker {
+    background: var(--ink); color: var(--lime);
+    font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+    padding: 11px 0; white-space: nowrap; overflow: hidden;
+  }
+  .ticker-inner { display: inline-block; animation: scroll 26s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ── nav ────────────────────────────── */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 0; border-bottom: 2px solid var(--ink);
+  }
+  nav .logo { font-weight: 900; font-size: 17px; letter-spacing: -0.02em; text-transform: uppercase; }
+  nav .links a {
+    color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; margin-left: 30px;
+    padding-bottom: 3px; border-bottom: 2px solid transparent; transition: border-color .2s;
+  }
+  nav .links a:hover { border-color: var(--lime-deep); }
+
+  /* ── hero ───────────────────────────── */
+  header.hero { padding: 96px 0 84px; border-bottom: 1px solid var(--rule); position: relative; }
+  .badge {
+    display: inline-block; background: var(--ink); color: var(--lime);
+    font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    padding: 9px 20px; transform: rotate(-2deg); margin-bottom: 40px;
+  }
+  h1 {
+    font-weight: 900; text-transform: uppercase;
+    font-size: clamp(54px, 9.5vw, 128px);
+    line-height: 0.92; letter-spacing: -0.04em;
+  }
+  h1 .outline { color: transparent; -webkit-text-stroke: 2.5px var(--ink); }
+  h1 .serif-accent {
+    font-family: Georgia, serif; font-style: italic; font-weight: 400;
+    text-transform: none; letter-spacing: -0.02em;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px;
+    margin-top: 68px; align-items: start;
+  }
+  .lede {
+    font-family: Georgia, serif; font-size: clamp(19px, 2.2vw, 23px);
+    line-height: 1.6; color: #2a2822;
+  }
+  .lede + .lede { margin-top: 20px; }
+  .facts { font-size: 14px; }
+  .facts .fact {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding: 14px 2px; border-top: 1px solid var(--rule);
+  }
+  .facts .fact:last-child { border-bottom: 1px solid var(--rule); }
+  .facts b { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; }
+  .facts span { color: var(--dim); text-align: right; }
+  .stickers { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .sticker {
+    font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    border: 2px solid var(--ink); border-radius: 100px; padding: 7px 18px;
+    background: var(--paper);
+  }
+  .sticker.on { background: var(--lime); }
+
+  /* ── sections ───────────────────────── */
+  section { padding: 88px 0; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px; gap: 24px; flex-wrap: wrap; }
+  h2.loud-title { font-size: clamp(38px, 6vw, 72px); line-height: 0.95; }
+  .sec-note { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--dim); }
+
+  /* ── work entries ───────────────────── */
+  .entry {
+    display: grid; grid-template-columns: 100px 1fr 1.35fr; gap: 52px;
+    padding: 46px 0; border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .entry:last-child { border-bottom: none; }
+  .entry .yr {
+    font-family: Georgia, serif; font-style: italic; font-size: 17px; color: var(--dim);
+    padding-top: 8px;
+  }
+  .entry h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; }
+  .entry .role { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
+  .entry .desc { font-size: 16px; color: #33302a; max-width: 58ch; }
+  .entry .desc + .desc { margin-top: 14px; }
+  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); padding: 0 6px; white-space: nowrap; }
+  .entry .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .entry .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 100px; color: var(--ink);
+  }
+
+  /* ── builder (dark) ─────────────────── */
+  .dark { background: var(--ink); color: var(--paper); }
+  .dark .sec-note { color: #9a937f; }
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .proj {
+    display: block; text-decoration: none; color: var(--ink);
+    background: var(--lime); padding: 46px;
+    border: 3px solid var(--lime);
+    transition: transform .2s ease;
+    position: relative;
+  }
+  .proj:hover { transform: rotate(-1deg) scale(1.015); }
+  .proj .k {
+    font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    border-bottom: 2px solid var(--ink); display: inline-block; padding-bottom: 7px;
+  }
+  .proj h3 { font-size: clamp(36px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 18px; line-height: 0.95; }
+  .proj p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; color: #1e1d16; }
+  .proj .go {
+    margin-top: 30px; display: inline-block;
+    font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    background: var(--ink); color: var(--lime); padding: 12px 26px;
+  }
+
+  /* ── manifesto ──────────────────────── */
+  .manifesto { padding: 120px 0; text-align: left; }
+  .manifesto p {
+    font-family: Georgia, serif; font-style: italic;
+    font-size: clamp(30px, 4.8vw, 56px); line-height: 1.25; letter-spacing: -0.01em;
+    max-width: 26ch; color: #2a2822;
+  }
+  .manifesto p .hl { font-style: normal; font-family: "Helvetica Neue", Arial, sans-serif; font-weight: 900; }
+
+  /* ── footer ─────────────────────────── */
+  footer { background: var(--ink); color: var(--paper); padding: 96px 0 48px; }
+  footer .cta { font-size: clamp(46px, 8vw, 100px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; }
+  footer .cta span { color: var(--lime); }
+  footer .btns { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px; }
+  footer a.btn {
+    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; padding: 16px 34px; text-decoration: none;
+    background: var(--lime); color: var(--ink); border: 2px solid var(--lime);
+    transition: all .18s;
+  }
+  footer a.btn:hover { background: transparent; color: var(--lime); }
+  footer .fine { margin-top: 72px; font-size: 12px; color: #8a8371; letter-spacing: .14em; text-transform: uppercase; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 780px) {
+    .wrap { padding: 0 24px; }
+    .hero-grid, .proj-grid { grid-template-columns: 1fr; gap: 40px; }
+    .entry { grid-template-columns: 1fr; gap: 16px; }
+    .entry .yr { padding-top: 0; }
+    nav .links a { margin-left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-inner">
+  Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳ Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳ Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳
+</div></div>
+
+<div class="wrap">
+
+  <nav>
+    <div class="logo">Nate Thomas</div>
+    <div class="links">
+      <a href="#work">Work</a>
+      <a href="#builder">Builder</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="badge">Toronto, ON</div>
+    <h1>
+      AI PM.<br>
+      <span class="outline">Actually</span><br>
+      <span class="serif-accent">builds</span> <span class="hl">things.</span>
+    </h1>
+    <div class="hero-grid">
+      <div>
+        <p class="lede">I'm the PM behind Ask Momentus, the flagship AI product at Momentus Technologies. I also lead our AI platform work — the agent framework and the evals that the rest of the company now builds on.</p>
+        <p class="lede">Before that I shipped platform and AI products at Pendo and Cvent, including an LLM agent back when you still had to explain what an LLM was. Outside of work I build my own stuff, because it's the only way I actually learn anything.</p>
+        <div class="stickers">
+          <span class="sticker on">★ Now: Ask Momentus</span>
+          <span class="sticker">Agent Builder</span>
+          <span class="sticker">Evals</span>
+          <span class="sticker">0 → 1</span>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>Currently</b><span>AI PM, Momentus Technologies</span></div>
+        <div class="fact"><b>Focus</b><span>Ask Momentus + AI platform</span></div>
+        <div class="fact"><b>Previously</b><span>Pendo · Cvent · Socotra</span></div>
+        <div class="fact"><b>After hours</b><span>StackKeep (founder) · TennisBud</span></div>
+        <div class="fact"><b>Based in</b><span>Toronto, ON</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="sec-head">
+      <h2 class="loud loud-title">What I've <span class="hl">shipped</span></h2>
+      <span class="sec-note">and what it did</span>
+    </div>
+
+    <div class="entry">
+      <div class="yr">'26 — now</div>
+      <div>
+        <h3>Momentus Technologies</h3>
+        <div class="role">AI Product Manager</div>
+      </div>
+      <div>
+        <p class="desc">I own Ask Momentus, our flagship AI product. This year that's meant a full UX overhaul (<span class="num">+10% adoption</span>) and turning a single chatbot into an agent-building framework that other product teams now ship on.</p>
+        <p class="desc">I also wrote the <span class="num">evals strategy</span> the company uses to figure out whether an AI feature is actually good. That turned out to be the harder problem.</p>
+        <div class="tags"><span class="tag">Flagship AI</span><span class="tag">Agent framework</span><span class="tag">Evals</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="yr">'25 — '26</div>
+      <div>
+        <h3>Pendo</h3>
+        <div class="role">PM, Platform &amp; Enterprise</div>
+      </div>
+      <div>
+        <p class="desc">Enterprise deals kept stalling on identity. I dug in with customers, found the blocker — multi-IdP SSO — made the case to leadership, and shipped federation for Okta, ADFS, and AzureAD. It was worth <span class="num">$10M+ ARR</span> in Fortune 500 accounts.</p>
+        <p class="desc">Also led internationalization across the whole platform (<span class="num">+10% win rates</span> in Japan, Germany, LatAm) and shipped an enterprise console that cut setup time by <span class="num">40%</span>.</p>
+        <div class="tags"><span class="tag">0→1 enterprise</span><span class="tag">Multi-IdP SSO</span><span class="tag">i18n</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="yr">'22 — '24</div>
+      <div>
+        <h3>Cvent</h3>
+        <div class="role">Associate Product Manager</div>
+      </div>
+      <div>
+        <p class="desc">Led the 0-to-1 for an <span class="num">LLM onboarding agent</span> in 2022, when that still took a lot of explaining. It's live with thousands of customers now, <span class="num">+5 CSAT</span>.</p>
+        <p class="desc">Other things I'm proud of: <span class="num">$500k+ ARR</span> recovered by catching buyer-user misalignment in SQL cohorts, and <span class="num">+25% feature adoption</span> from A/B testing six core product events.</p>
+        <div class="tags"><span class="tag">LLM agent</span><span class="tag">A/B testing</span><span class="tag">SQL</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="dark" id="builder">
+  <div class="wrap">
+    <section>
+      <div class="sec-head">
+        <h2 class="loud loud-title" style="color:var(--paper)">After <span class="hl">hours</span></h2>
+        <span class="sec-note">things I build for fun, and occasionally for money</span>
+      </div>
+      <div class="proj-grid">
+        <a class="proj" href="https://stackkeep.com" target="_blank" rel="noopener">
+          <span class="k">Founder — Agentic SaaS</span>
+          <h3>StackKeep</h3>
+          <p>My startup. An agent that audits a company's Google Workspace, finds the SaaS seats nobody uses, and handles cleanup in Slack. Free audit — I charge 20% of verified savings, so I only make money when I save someone money. It's taught me more about building with AI than anything else, mostly by breaking.</p>
+          <span class="go">stackkeep.com →</span>
+        </a>
+        <a class="proj" href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
+          <span class="k">Side project — Open data</span>
+          <h3>TennisBud</h3>
+          <p>I play tennis in Toronto, which mostly means fighting for courts. So I mapped every public one from the city's open data — lights, distance, court count — and added a heuristic that guesses how busy a park will be before you bike over.</p>
+          <span class="go">tennisbud.vercel.app →</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="manifesto">
+    <p>"Most of what I know about AI products, I learned by shipping ones that <span class="hl">didn't work the first time.</span>"</p>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cta">Say <span>hi.</span></div>
+    <div class="btns">
+      <a class="btn" href="mailto:nathansamthomas@gmail.com">Email</a>
+      <a class="btn" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
+    </div>
+    <div class="fine">
+      <span>© 2026 Nate Thomas — Toronto, ON</span>
+      <span>nathansamthomas@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

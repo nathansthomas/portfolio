@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nate Thomas — Portfolio Variants</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; font-family: "Helvetica Neue", Arial, sans-serif; height: 100vh; display: flex; flex-direction: column; }
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px; background: #161616; border-bottom: 1px solid #2a2a2a;
+    flex: 0 0 auto;
+  }
+  .bar .label { color: #888; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .tabs { display: flex; gap: 8px; }
+  .tabs button {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 18px; border-radius: 100px; cursor: pointer;
+    border: 1px solid #3a3a3a; background: transparent; color: #bbb;
+    transition: all .15s;
+  }
+  .tabs button:hover { border-color: #888; color: #fff; }
+  .tabs button.active { background: #f4f4f2; color: #111; border-color: #f4f4f2; }
+  .frames { flex: 1 1 auto; position: relative; }
+  iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+    display: none; background: #fff;
+  }
+  iframe.active { display: block; }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <span class="label">Portfolio variants</span>
+    <div class="tabs">
+      <button data-v="a" class="active">A — Dark &amp; Confident</button>
+      <button data-v="b">B — Editorial Print</button>
+      <button data-v="c">C — Loud &amp; Original</button>
+    </div>
+    <span class="label" id="hint">1 / 2 / 3 to switch</span>
+  </div>
+  <div class="frames">
+    <iframe src="variant-a.html" data-v="a" class="active" title="Variant A — Dark &amp; Confident"></iframe>
+    <iframe src="variant-b.html" data-v="b" title="Variant B — Editorial Print"></iframe>
+    <iframe src="variant-c.html" data-v="c" title="Variant C — Loud &amp; Original"></iframe>
+  </div>
+<script>
+  const buttons = document.querySelectorAll('.tabs button');
+  const frames = document.querySelectorAll('iframe');
+  function show(v) {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.v === v));
+    frames.forEach(f => f.classList.toggle('active', f.dataset.v === v));
+  }
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.v)));
+  document.addEventListener('keydown', e => {
+    if (e.key === '1') show('a');
+    if (e.key === '2') show('b');
+    if (e.key === '3') show('c');
+  });
+</script>
+</body>
+</html>

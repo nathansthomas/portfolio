@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nate Thomas — AI Product Leader & Builder</title>
+<style>
+  :root {
+    --bg: #eefb4b;          /* electric lime */
+    --ink: #111111;
+    --card: #ffffff;
+    --alt: #1b1b1b;
+    --alt-ink: #eefb4b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .sans { font-family: "Helvetica Neue", Arial, sans-serif; font-weight: 400; }
+
+  .marquee {
+    background: var(--ink); color: var(--bg);
+    font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+    padding: 12px 0; white-space: nowrap; overflow: hidden;
+  }
+  .marquee-inner { display: inline-block; animation: scroll 22s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 36px; }
+
+  header.hero { padding: 90px 0 70px; position: relative; }
+  .name-tag {
+    display: inline-block; background: var(--ink); color: var(--bg);
+    padding: 8px 18px; font-size: 14px; letter-spacing: .2em; text-transform: uppercase;
+    transform: rotate(-2deg); margin-bottom: 36px;
+  }
+  h1 {
+    font-size: clamp(56px, 11vw, 150px);
+    line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase;
+  }
+  h1 .outline {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
+  }
+  .hero-sub {
+    margin-top: 44px; max-width: 52ch;
+    font-family: "Helvetica Neue", Arial, sans-serif; font-size: 18px; line-height: 1.6;
+    background: var(--card); border: 2px solid var(--ink); padding: 24px 28px;
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: rotate(-0.5deg);
+  }
+
+  .sticker-row { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+  .sticker {
+    font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+    border: 2px solid var(--ink); border-radius: 100px; padding: 8px 20px;
+    background: var(--bg);
+  }
+  .sticker.solid { background: var(--ink); color: var(--bg); }
+
+  section { padding: 90px 0; }
+  .sec-title {
+    font-size: clamp(36px, 6vw, 72px); text-transform: uppercase;
+    letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 56px;
+  }
+  .sec-title span { background: var(--ink); color: var(--bg); padding: 0 14px; }
+
+  .job {
+    background: var(--card); border: 3px solid var(--ink);
+    padding: 40px; margin-bottom: 28px;
+    box-shadow: 10px 10px 0 var(--ink);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .job:hover { transform: translate(-4px, -4px); box-shadow: 14px 14px 0 var(--ink); }
+  .job .row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+  .job h3 { font-size: clamp(26px, 4vw, 40px); text-transform: uppercase; letter-spacing: -0.02em; }
+  .job .when { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; background: var(--bg); border: 2px solid var(--ink); padding: 4px 14px; }
+  .job .role { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 15px; margin: 10px 0 16px; font-weight: 700; }
+  .job p { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 15px; line-height: 1.65; max-width: 68ch; }
+  .chips { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .chip { font-size: 13px; font-weight: 700; background: var(--ink); color: var(--bg); padding: 6px 16px; border-radius: 100px; }
+
+  .dark { background: var(--alt); color: var(--alt-ink); padding: 100px 0; }
+  .dark .wrap { max-width: 1200px; }
+  .dark .sec-title span { background: var(--bg); color: var(--ink); }
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .proj {
+    display: block; text-decoration: none; color: var(--ink);
+    background: var(--bg); border: 3px solid var(--bg);
+    padding: 44px; transition: transform .2s;
+  }
+  .proj:hover { transform: rotate(-1deg) scale(1.02); }
+  .proj .k { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; border-bottom: 2px solid var(--ink); display: inline-block; padding-bottom: 6px; }
+  .proj h3 { font-size: clamp(34px, 5vw, 56px); text-transform: uppercase; letter-spacing: -0.03em; margin: 22px 0 16px; }
+  .proj p { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 15px; line-height: 1.65; }
+  .proj .go { margin-top: 26px; display: inline-block; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; background: var(--ink); color: var(--bg); padding: 10px 22px; }
+
+  .manifesto { padding: 110px 0; }
+  .manifesto p {
+    font-size: clamp(30px, 5.5vw, 64px); text-transform: uppercase;
+    line-height: 1.05; letter-spacing: -0.03em; max-width: 20ch;
+  }
+  .manifesto p .hl { background: var(--ink); color: var(--bg); padding: 0 12px; }
+
+  footer { background: var(--ink); color: var(--bg); padding: 90px 0 50px; }
+  footer .cta { font-size: clamp(40px, 7vw, 88px); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 44px; }
+  footer a.btn {
+    display: inline-block; background: var(--bg); color: var(--ink);
+    font-size: 15px; letter-spacing: .16em; text-transform: uppercase;
+    padding: 16px 34px; text-decoration: none; margin: 0 16px 16px 0;
+    border: 2px solid var(--bg); transition: all .2s;
+  }
+  footer a.btn:hover { background: transparent; color: var(--bg); }
+  footer .fine { margin-top: 60px; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 13px; opacity: .7; }
+
+  @media (max-width: 720px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="marquee"><div class="marquee-inner">
+  AI PRODUCT &nbsp;★&nbsp; BUILDER &nbsp;★&nbsp; ASK MOMENTUS &nbsp;★&nbsp; STACKKEEP &nbsp;★&nbsp; TENNISBUD &nbsp;★&nbsp; TORONTO &nbsp;★&nbsp; AI PRODUCT &nbsp;★&nbsp; BUILDER &nbsp;★&nbsp; ASK MOMENTUS &nbsp;★&nbsp; STACKKEEP &nbsp;★&nbsp; TENNISBUD &nbsp;★&nbsp; TORONTO &nbsp;★&nbsp;
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="name-tag sans">Nate Thomas — Portfolio</div>
+    <h1>AI PM.<br><span class="outline">Actually</span><br>Builds.</h1>
+    <div class="hero-sub">
+      Product leader at Momentus Technologies, owning <b>Ask Momentus</b> — the company's flagship AI product — and the AI platform strategy behind it. I don't just spec AI products. I ship them, measure them, and build my own on weekends.
+    </div>
+    <div class="sticker-row sans">
+      <span class="sticker solid">★ Now: Ask Momentus</span>
+      <span class="sticker">Agent Builder</span>
+      <span class="sticker">Evals strategy</span>
+      <span class="sticker">0→1</span>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="sec-title">The <span>receipts</span></h2>
+
+    <div class="job">
+      <div class="row"><h3>Momentus</h3><span class="when">2026 — Now</span></div>
+      <div class="role sans">AI Product Manager</div>
+      <p>Own the flagship AI product, Ask Momentus. Took it from chatbot to Agent Builder — a reusable framework teams across the company now build on — and wrote the evals strategy every product team uses to measure AI quality.</p>
+      <div class="chips sans"><span class="chip">+10% adoption</span><span class="chip">Org-wide evals</span><span class="chip">UX overhaul</span></div>
+    </div>
+
+    <div class="job">
+      <div class="row"><h3>Pendo</h3><span class="when">2025 — 2026</span></div>
+      <div class="role sans">PM, Platform &amp; Enterprise</div>
+      <p>Found multi-IdP SSO blocking enterprise deals, pitched the investment case, shipped 0-to-1 federation (Okta, ADFS, AzureAD). Led internationalization platform-wide and cut enterprise setup time by 40%.</p>
+      <div class="chips sans"><span class="chip">$10M+ ARR unlocked</span><span class="chip">−40% setup time</span><span class="chip">+10% intl win rates</span></div>
+    </div>
+
+    <div class="job">
+      <div class="row"><h3>Cvent</h3><span class="when">2022 — 2024</span></div>
+      <div class="role sans">Associate Product Manager</div>
+      <p>Shipped an LLM-powered onboarding agent before LLMs were a slide in everyone's deck — live with thousands of customers. Recovered $500k+ ARR with SQL cohort analysis and pre-renewal activation.</p>
+      <div class="chips sans"><span class="chip">+5 CSAT from AI</span><span class="chip">$500k+ ARR recovered</span><span class="chip">+25% adoption</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="dark">
+  <div class="wrap">
+    <section style="padding:0">
+      <h2 class="sec-title">After <span>hours</span></h2>
+      <div class="proj-grid">
+        <a class="proj" href="https://stackkeep.com" target="_blank" rel="noopener">
+          <span class="k">Founder — Agentic SaaS</span>
+          <h3>StackKeep</h3>
+          <p>An AI agent that audits your Google Workspace, finds SaaS seats nobody uses, and cleans them up in Slack. You pay 20% of verified savings — find nothing, pay nothing. The startup that made me an AI builder.</p>
+          <span class="go">stackkeep.com →</span>
+        </a>
+        <a class="proj" href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
+          <span class="k">Side project — Open data</span>
+          <h3>TennisBud</h3>
+          <p>Every public tennis court in Toronto, filterable by lights, distance, and court count — with a crowd heuristic so you know before you go. Built with city open data and spite.</p>
+          <span class="go">tennisbud.vercel.app →</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="manifesto">
+    <p>Good AI products don't feel like AI. They feel like <span class="hl">the product doing its job.</span></p>
+  </section>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cta">Talk to me.</div>
+    <a class="btn" href="mailto:nathansamthomas@gmail.com">Email</a>
+    <a class="btn" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
+    <div class="fine">© 2026 Nate Thomas — Toronto, ON — Made with coffee and evals</div>
+  </div>
+</footer>
+
+</body>
+</html>
