@@ -23,6 +23,27 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d9ff3d'/><text x='50' y='68' font-size='48' text-anchor='middle' font-family='Arial Black' font-weight='900'>NT</text></svg>">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nate Thomas",
+  "jobTitle": "AI Product Manager",
+  "url": "https://portfolio-two-kappa-38.vercel.app/",
+  "email": "mailto:nathansamthomas@gmail.com",
+  "worksFor": { "@type": "Organization", "name": "Momentus Technologies" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+  "sameAs": [
+    "https://www.linkedin.com/in/nathansamthomas",
+    "https://stackkeep.com"
+  ],
+  "knowsAbout": [
+    "AI product management", "LLM agents", "Agent frameworks", "AI evaluations",
+    "0 to 1 product", "Enterprise SaaS", "Single sign-on", "Internationalization",
+    "A/B testing", "SQL"
+  ]
+}
+</script>
 <style>
   :root {
     --paper: #f4f1e8;
@@ -125,14 +146,29 @@
   nav .links a.pill:hover { background: var(--ink); color: var(--lime); }
 
   /* ── hero ───────────────────────────── */
-  header.hero {
-    padding: clamp(56px, 8vw, 96px) 0 var(--bay);
-    border-bottom: 1px solid var(--rule);
+  header.hero { padding: clamp(56px, 8vw, 96px) 0 var(--bay); }
+  .badge-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    margin-bottom: clamp(28px, 4vw, 40px);
   }
   .badge {
     display: inline-block; background: var(--ink); color: var(--lime);
     font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-    padding: 9px 20px; transform: rotate(-2deg); margin-bottom: clamp(28px, 4vw, 40px);
+    padding: 9px 20px; transform: rotate(-2deg);
+  }
+  .status {
+    display: inline-flex; align-items: center; gap: 9px; background: var(--paper);
+    font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+    border: 2px solid var(--ink); border-radius: 100px; padding: 7px 18px;
+    transform: rotate(1.5deg);
+  }
+  .status .dot {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--lime-deep);
+    box-shadow: 0 0 0 0 rgba(184, 224, 42, .7); animation: pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse {
+    70% { box-shadow: 0 0 0 9px rgba(184, 224, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(184, 224, 42, 0); }
   }
   h1 {
     font-weight: 900; text-transform: uppercase;
@@ -167,13 +203,48 @@
   .facts .fact:last-child { border-bottom: 1px solid var(--rule); }
   .facts b { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; white-space: nowrap; }
   .facts span { color: var(--dim); text-align: right; }
-  .stickers { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-  .sticker {
-    font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    border: 2px solid var(--ink); border-radius: 100px; padding: 7px 18px;
-    background: var(--paper);
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(28px, 4vw, 36px); }
+  .hero-cta a {
+    display: inline-block; text-decoration: none; padding: 15px 30px;
+    font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    border: 2px solid var(--ink); transition: background .18s, color .18s;
   }
-  .sticker.on { background: var(--lime); }
+  .hero-cta a.primary { background: var(--ink); color: var(--lime); }
+  .hero-cta a.primary:hover { background: transparent; color: var(--ink); }
+  .hero-cta a.secondary { background: transparent; color: var(--ink); }
+  .hero-cta a.secondary:hover { background: var(--ink); color: var(--lime); }
+
+  /* ── proof band ─────────────────────── */
+  .proof { background: var(--lime); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .proof .wrap {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 40px);
+    padding-top: clamp(40px, 5vw, 56px); padding-bottom: clamp(40px, 5vw, 56px);
+  }
+  .proof .stat + .stat { border-left: 1px solid rgba(20, 19, 14, .22); padding-left: clamp(24px, 3vw, 40px); }
+  .proof .stat b {
+    display: block; font-size: clamp(36px, 5vw, 60px); font-weight: 900;
+    letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .proof .stat span { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: #2f2d1e; }
+
+  /* ── toolkit strip ──────────────────── */
+  .toolkit { border-bottom: 1px solid var(--rule); }
+  .toolkit .wrap {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px clamp(20px, 3vw, 36px);
+    padding-top: 26px; padding-bottom: 26px;
+  }
+  .toolkit .lbl {
+    font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .toolkit .terms {
+    display: flex; flex-wrap: wrap;
+    font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim);
+  }
+  .toolkit .terms span { white-space: nowrap; }
+  .toolkit .terms span::after { content: "\00b7"; margin: 0 12px; color: var(--lime-deep); }
+  .toolkit .terms span:last-child::after { content: none; }
 
   /* ── sections ───────────────────────── */
   section { padding: var(--bay) 0; }
@@ -253,6 +324,10 @@
   footer { background: var(--ink); color: var(--paper); padding: var(--bay) 0 48px; }
   footer .cta { font-size: clamp(46px, 8vw, 100px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; }
   footer .cta span { color: var(--lime); }
+  footer .cta-note {
+    font-family: Georgia, serif; font-style: italic; font-size: clamp(17px, 2vw, 21px);
+    color: var(--dim-dark); margin-top: 20px;
+  }
   footer .btns { margin-top: clamp(32px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 16px; }
   footer a.btn {
     display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em;
@@ -273,6 +348,8 @@
 
   /* ── responsive ─────────────────────── */
   @media (max-width: 900px) {
+    .proof .wrap { grid-template-columns: repeat(2, 1fr); row-gap: clamp(28px, 4vw, 40px); }
+    .proof .stat:nth-child(odd) { border-left: none; padding-left: 0; }
     .entry { grid-template-columns: 92px 1fr; }
     .entry .yr { grid-row: span 2; }
     .proj-grid { grid-template-columns: 1fr; }
@@ -283,8 +360,9 @@
     .navbar { position: static; }
     nav { padding: 16px 0; }
     nav .links { gap: 18px; }
-    /* stacked, the facts rule and the hero rule read as a doubled line */
+    /* stacked, the facts rule sits too close to the proof band's rule */
     .facts .fact:last-child { border-bottom: none; }
+    .hero-cta a { flex: 1 1 auto; text-align: center; }
   }
   @media (max-width: 560px) {
     .entry { grid-template-columns: 1fr; gap: 18px; }
@@ -293,6 +371,8 @@
     .facts .fact { flex-direction: column; gap: 2px; }
     .facts span { text-align: left; }
     h1 .outline { -webkit-text-stroke-width: 1.5px; }
+    .proof .wrap { grid-template-columns: 1fr; }
+    .proof .stat + .stat { border-left: none; padding-left: 0; padding-top: 24px; border-top: 1px solid rgba(20, 19, 14, .22); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -311,13 +391,17 @@
     body { background: #fff; color: #000; }
     body::after, .ticker, .navbar, .skip { display: none; }
     .dark, footer { background: #fff !important; color: #000 !important; }
-    .dark .sec-note, footer .fine { color: #444 !important; }
+    .dark .sec-note, footer .cta-note, footer .fine { color: #444 !important; }
     .proj { background: #fff !important; color: #000 !important; border: 1px solid #000 !important; }
     .proj p, .proj.alt p { color: #000 !important; }
     .proj .go i { background: #fff !important; color: #000 !important; border: 1px solid #000; }
     footer .cta span { color: #000; }
     section, header.hero { padding: 24px 0; }
     .entry { break-inside: avoid; }
+    .proof { background: #fff !important; border-color: #000 !important; }
+    .proof .stat span { color: #333 !important; }
+    .status .dot { animation: none; background: #000; }
+    .hero-cta a.primary { background: #fff !important; color: #000 !important; border-color: #000; }
   }
 </style>
 </head>
@@ -352,7 +436,10 @@
 <div class="wrap">
 
   <header class="hero" id="top">
-    <div class="badge">Toronto, ON</div>
+    <div class="badge-row">
+      <span class="badge">Toronto, ON</span>
+      <span class="status"><i class="dot"></i>Always up for a conversation</span>
+    </div>
     <h1>
       AI PM.<br>
       <span class="outline">Actually</span><br>
@@ -362,11 +449,9 @@
       <div>
         <p class="lede">I'm the PM behind Ask Momentus, the flagship AI product at Momentus Technologies. I also lead our AI platform work — the agent framework and the evals that the rest of the company now builds on.</p>
         <p class="lede">Before that I shipped platform and AI products at Pendo and Cvent, including an LLM agent back when you still had to explain what an LLM was. Outside of work I build my own stuff, because it's the only way I actually learn anything.</p>
-        <div class="stickers">
-          <span class="sticker on">★ Now: Ask Momentus</span>
-          <span class="sticker">Agent Builder</span>
-          <span class="sticker">Evals</span>
-          <span class="sticker">0 → 1</span>
+        <div class="hero-cta">
+          <a class="primary" href="/nate-thomas-resume.pdf">Résumé (PDF)</a>
+          <a class="secondary" href="mailto:nathansamthomas@gmail.com">Email me</a>
         </div>
       </div>
       <div class="facts">
@@ -379,6 +464,28 @@
       </div>
     </div>
   </header>
+
+</div>
+
+<div class="proof">
+  <div class="wrap">
+    <div class="stat"><b>$10M+</b><span>ARR unlocked in Fortune&nbsp;500 accounts by shipping multi-IdP SSO</span></div>
+    <div class="stat"><b>+25%</b><span>Feature adoption from A/B testing six core product events</span></div>
+    <div class="stat"><b>+10%</b><span>Adoption on Ask Momentus after a full UX overhaul</span></div>
+    <div class="stat"><b>+5</b><span>CSAT from an LLM onboarding agent — shipped in 2022</span></div>
+  </div>
+</div>
+
+<div class="toolkit">
+  <div class="wrap">
+    <span class="lbl">Toolkit</span>
+    <div class="terms">
+      <span>AI agents</span><span>Agent frameworks</span><span>Evals</span><span>LLM products</span><span>0 → 1</span><span>Platform</span><span>Enterprise SSO</span><span>i18n</span><span>A/B testing</span><span>SQL</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
 
   <section id="work">
     <div class="sec-head">
@@ -457,6 +564,7 @@
 <footer id="contact">
   <div class="wrap">
     <div class="cta">Say <span>hi.</span></div>
+    <p class="cta-note">Always up for a conversation.</p>
     <div class="btns">
       <a class="btn" href="mailto:nathansamthomas@gmail.com">Email</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
