@@ -5,68 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nate Thomas — AI Product Manager & Builder</title>
 <meta name="description" content="Nate Thomas is an AI product manager at Momentus Technologies, where he owns Ask Momentus and the company's AI platform work. Founder of StackKeep. Builder of TennisBud. Based in Toronto.">
+<link rel="canonical" href="https://portfolio-two-kappa-38.vercel.app/">
+<meta name="theme-color" content="#14130e">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://portfolio-two-kappa-38.vercel.app/">
+<meta property="og:title" content="Nate Thomas — AI Product Manager & Builder">
+<meta property="og:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON.">
+<meta property="og:image" content="https://portfolio-two-kappa-38.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nate Thomas — AI Product Manager & Builder">
+<meta name="twitter:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON.">
+<meta name="twitter:image" content="https://portfolio-two-kappa-38.vercel.app/og-image.png">
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d9ff3d'/><text x='50' y='68' font-size='48' text-anchor='middle' font-family='Arial Black' font-weight='900'>NT</text></svg>">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   :root {
     --paper: #f4f1e8;
     --ink: #14130e;
+    --ink-2: #33302a;
     --dim: #6b6558;
+    --dim-dark: #9a937f;
     --rule: #ddd6c6;
     --lime: #d9ff3d;
     --lime-deep: #b8e02a;
+
+    --gut: clamp(24px, 4vw, 40px);
+    --bay: clamp(64px, 8vw, 104px);
+    --nav-h: 74px;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
-  .serif { font-family: Georgia, "Times New Roman", serif; }
+
+  /* Paper grain — the whole thing is pretending to be newsprint, so let it. */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 200; pointer-events: none;
+    opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   .loud {
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
   }
-  .hl { background: var(--lime); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  ::selection { background: var(--lime); }
+  .hl { background: var(--lime); color: var(--ink); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  ::selection { background: var(--lime); color: var(--ink); }
 
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gut); }
+
+  a { color: inherit; }
+  :where(a):focus-visible {
+    outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 2px;
+  }
+  .dark :where(a):focus-visible,
+  footer :where(a):focus-visible { outline-color: var(--lime); }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 300;
+    background: var(--lime); color: var(--ink); padding: 14px 22px;
+    font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .skip:focus { left: 0; }
 
   /* ── ticker ─────────────────────────── */
   .ticker {
     background: var(--ink); color: var(--lime);
     font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
-    padding: 11px 0; white-space: nowrap; overflow: hidden;
+    padding: 11px 0; overflow: hidden;
   }
-  .ticker-inner { display: inline-block; animation: scroll 26s linear infinite; }
-  @keyframes scroll { to { transform: translateX(-50%); } }
+  .ticker-track { display: flex; width: max-content; animation: scroll 44s linear infinite; }
+  .ticker-seq { display: flex; flex: none; }
+  .ticker-seq span { padding: 0 18px; white-space: nowrap; }
+  .ticker-seq span::after { content: "✳"; margin-left: 18px; color: var(--lime-deep); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ── nav ────────────────────────────── */
+  .navbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 241, 232, .9);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 2px solid var(--ink);
+  }
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 26px 0; border-bottom: 2px solid var(--ink);
+    gap: 16px; flex-wrap: wrap; padding: 22px 0;
   }
-  nav .logo { font-weight: 900; font-size: 17px; letter-spacing: -0.02em; text-transform: uppercase; }
+  nav .logo {
+    font-weight: 900; font-size: 17px; letter-spacing: -0.02em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  nav .links { display: flex; align-items: center; gap: 26px; }
   nav .links a {
     color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase; margin-left: 30px;
+    letter-spacing: .12em; text-transform: uppercase;
     padding-bottom: 3px; border-bottom: 2px solid transparent; transition: border-color .2s;
   }
   nav .links a:hover { border-color: var(--lime-deep); }
+  nav .links a.pill {
+    border: 2px solid var(--ink); border-radius: 100px; padding: 6px 16px;
+    background: var(--lime); transition: background .2s, color .2s;
+  }
+  nav .links a.pill:hover { background: var(--ink); color: var(--lime); }
 
   /* ── hero ───────────────────────────── */
-  header.hero { padding: 96px 0 84px; border-bottom: 1px solid var(--rule); position: relative; }
+  header.hero {
+    padding: clamp(56px, 8vw, 96px) 0 var(--bay);
+    border-bottom: 1px solid var(--rule);
+  }
   .badge {
     display: inline-block; background: var(--ink); color: var(--lime);
     font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-    padding: 9px 20px; transform: rotate(-2deg); margin-bottom: 40px;
+    padding: 9px 20px; transform: rotate(-2deg); margin-bottom: clamp(28px, 4vw, 40px);
   }
   h1 {
     font-weight: 900; text-transform: uppercase;
-    font-size: clamp(54px, 9.5vw, 128px);
+    font-size: clamp(52px, 9.5vw, 128px);
     line-height: 0.92; letter-spacing: -0.04em;
   }
   h1 .outline { color: transparent; -webkit-text-stroke: 2.5px var(--ink); }
@@ -75,21 +145,27 @@
     text-transform: none; letter-spacing: -0.02em;
   }
   .hero-grid {
-    display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px;
-    margin-top: 68px; align-items: start;
+    display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(40px, 6vw, 72px);
+    margin-top: clamp(44px, 6vw, 68px); align-items: start;
   }
   .lede {
     font-family: Georgia, serif; font-size: clamp(19px, 2.2vw, 23px);
-    line-height: 1.6; color: #2a2822;
+    line-height: 1.6; color: #2a2822; max-width: 54ch;
   }
   .lede + .lede { margin-top: 20px; }
-  .facts { font-size: 14px; }
+
+  .facts { font-size: 14px; font-variant-numeric: tabular-nums; }
+  .facts-head {
+    font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--ink); display: inline-block;
+    border-bottom: 3px solid var(--lime-deep); padding-bottom: 6px; margin-bottom: 18px;
+  }
   .facts .fact {
     display: flex; justify-content: space-between; gap: 20px;
     padding: 14px 2px; border-top: 1px solid var(--rule);
   }
   .facts .fact:last-child { border-bottom: 1px solid var(--rule); }
-  .facts b { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; }
+  .facts b { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; white-space: nowrap; }
   .facts span { color: var(--dim); text-align: right; }
   .stickers { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
   .sticker {
@@ -100,28 +176,38 @@
   .sticker.on { background: var(--lime); }
 
   /* ── sections ───────────────────────── */
-  section { padding: 88px 0; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px; gap: 24px; flex-wrap: wrap; }
+  section { padding: var(--bay) 0; }
+  [id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+  .sec-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: clamp(36px, 5vw, 56px); gap: 24px; flex-wrap: wrap;
+  }
   h2.loud-title { font-size: clamp(38px, 6vw, 72px); line-height: 0.95; }
-  .sec-note { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--dim); }
+  .sec-note { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--dim); text-wrap: balance; }
 
   /* ── work entries ───────────────────── */
   .entry {
-    display: grid; grid-template-columns: 100px 1fr 1.35fr; gap: 52px;
-    padding: 46px 0; border-bottom: 1px solid var(--rule);
-    position: relative;
+    display: grid; grid-template-columns: 108px 1fr 1.35fr; gap: clamp(24px, 4vw, 52px);
+    padding: clamp(32px, 4vw, 46px) 0; border-bottom: 1px solid var(--rule);
   }
-  .entry:last-child { border-bottom: none; }
-  .entry .yr {
+  .entry:first-child { padding-top: 0; }
+  .entry:last-child { border-bottom: none; padding-bottom: 0; }
+  .entry .yr { padding-top: 6px; }
+  .entry .idx {
+    display: inline-block; background: var(--lime); color: var(--ink);
+    font-size: 12px; font-weight: 900; letter-spacing: .16em;
+    padding: 5px 10px; font-variant-numeric: tabular-nums;
+  }
+  .entry .date {
+    display: block; margin-top: 12px;
     font-family: Georgia, serif; font-style: italic; font-size: 17px; color: var(--dim);
-    padding-top: 8px;
   }
   .entry h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; }
   .entry .role { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
-  .entry .desc { font-size: 16px; color: #33302a; max-width: 58ch; }
+  .entry .desc { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
   .entry .desc + .desc { margin-top: 14px; }
-  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); padding: 0 6px; white-space: nowrap; }
-  .entry .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); color: var(--ink); padding: 0 6px; white-space: nowrap; }
+  .entry .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
   .entry .tag {
     font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
     border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 100px; color: var(--ink);
@@ -129,69 +215,143 @@
 
   /* ── builder (dark) ─────────────────── */
   .dark { background: var(--ink); color: var(--paper); }
-  .dark .sec-note { color: #9a937f; }
-  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .dark section { padding-bottom: 0; } /* footer's own bay carries the gap */
+  .dark .sec-note { color: var(--dim-dark); }
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 32px); }
   .proj {
-    display: block; text-decoration: none; color: var(--ink);
-    background: var(--lime); padding: 46px;
+    display: flex; flex-direction: column; align-items: flex-start;
+    text-decoration: none; color: var(--ink);
+    background: var(--lime); padding: clamp(30px, 4vw, 46px);
     border: 3px solid var(--lime);
     transition: transform .2s ease;
-    position: relative;
   }
-  .proj:hover { transform: rotate(-1deg) scale(1.015); }
+  .proj:hover, .proj:focus-visible { transform: rotate(-1deg) scale(1.015); }
   .proj .k {
     font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-    border-bottom: 2px solid var(--ink); display: inline-block; padding-bottom: 7px;
+    border-bottom: 2px solid currentColor; padding-bottom: 7px;
   }
-  .proj h3 { font-size: clamp(36px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 18px; line-height: 0.95; }
+  .proj h3 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 18px; line-height: 0.95; }
   .proj p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; color: #1e1d16; }
   .proj .go {
-    margin-top: 30px; display: inline-block;
+    margin-top: auto; padding-top: 30px;
     font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .proj .go i {
+    font-style: normal; display: inline-block;
     background: var(--ink); color: var(--lime); padding: 12px 26px;
   }
+  .proj .go .arw { display: inline-block; transition: transform .2s ease; }
+  .proj:hover .go .arw { transform: translateX(5px); }
+
+  /* second card inverts, so the pair reads as a set instead of a repeat */
+  .proj.alt { background: transparent; border-color: var(--paper); color: var(--paper); }
+  .proj.alt p { color: #cfc9b6; }
+  .proj.alt:hover, .proj.alt:focus-visible { transform: rotate(1deg) scale(1.015); }
+  .proj.alt .go i { background: var(--paper); color: var(--ink); }
 
   /* ── footer ─────────────────────────── */
-  footer { background: var(--ink); color: var(--paper); padding: 96px 0 48px; }
+  footer { background: var(--ink); color: var(--paper); padding: var(--bay) 0 48px; }
   footer .cta { font-size: clamp(46px, 8vw, 100px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; }
   footer .cta span { color: var(--lime); }
-  footer .btns { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px; }
+  footer .btns { margin-top: clamp(32px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 16px; }
   footer a.btn {
     display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em;
     text-transform: uppercase; padding: 16px 34px; text-decoration: none;
     background: var(--lime); color: var(--ink); border: 2px solid var(--lime);
-    transition: all .18s;
+    transition: background .18s, color .18s;
   }
   footer a.btn:hover { background: transparent; color: var(--lime); }
-  footer .fine { margin-top: 72px; font-size: 12px; color: #8a8371; letter-spacing: .14em; text-transform: uppercase; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a.btn.ghost { background: transparent; color: var(--paper); border-color: #514d43; }
+  footer a.btn.ghost:hover { border-color: var(--paper); background: var(--paper); color: var(--ink); }
+  footer .fine {
+    margin-top: clamp(48px, 7vw, 72px); padding-top: 24px; border-top: 1px solid #35322a;
+    font-size: 12px; color: #a29b88; letter-spacing: .14em; text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer .fine a { text-decoration: none; border-bottom: 1px solid #46433a; padding-bottom: 2px; }
+  footer .fine a:hover { color: var(--lime); border-color: var(--lime); }
 
+  /* ── responsive ─────────────────────── */
+  @media (max-width: 900px) {
+    .entry { grid-template-columns: 92px 1fr; }
+    .entry .yr { grid-row: span 2; }
+    .proj-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 780px) {
-    .wrap { padding: 0 24px; }
-    .hero-grid, .proj-grid { grid-template-columns: 1fr; gap: 40px; }
-    .entry { grid-template-columns: 1fr; gap: 16px; }
-    .entry .yr { padding-top: 0; }
-    nav .links a { margin-left: 18px; }
+    :root { --nav-h: 8px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .navbar { position: static; }
+    nav { padding: 16px 0; }
+    nav .links { gap: 18px; }
+    /* stacked, the facts rule and the hero rule read as a doubled line */
+    .facts .fact:last-child { border-bottom: none; }
+  }
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 18px; }
+    .entry .yr { padding-top: 0; grid-row: auto; }
+    .entry .date { display: inline-block; margin: 0 0 0 12px; }
+    .facts .fact { flex-direction: column; gap: 2px; }
+    .facts span { text-align: left; }
+    h1 .outline { -webkit-text-stroke-width: 1.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ticker-track { animation: none; }
+    *, *::before, *::after {
+      transition-duration: .01ms !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+    .proj:hover, .proj:focus-visible,
+    .proj.alt:hover, .proj.alt:focus-visible { transform: none; }
+  }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    body::after, .ticker, .navbar, .skip { display: none; }
+    .dark, footer { background: #fff !important; color: #000 !important; }
+    .dark .sec-note, footer .fine { color: #444 !important; }
+    .proj { background: #fff !important; color: #000 !important; border: 1px solid #000 !important; }
+    .proj p, .proj.alt p { color: #000 !important; }
+    .proj .go i { background: #fff !important; color: #000 !important; border: 1px solid #000; }
+    footer .cta span { color: #000; }
+    section, header.hero { padding: 24px 0; }
+    .entry { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<div class="ticker"><div class="ticker-inner">
-  Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳ Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳ Nate Thomas ✳ AI Product ✳ Ask Momentus ✳ StackKeep ✳ TennisBud ✳ Toronto ✳
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+  <div class="ticker-seq">
+    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
+  </div>
+  <div class="ticker-seq">
+    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
+  </div>
 </div></div>
 
+<div class="navbar">
+  <div class="wrap">
+    <nav aria-label="Primary">
+      <a class="logo" href="#top">Nate Thomas</a>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#builder">Builder</a>
+        <a href="#contact">Contact</a>
+        <a class="pill" href="/nate-thomas-resume.pdf">Résumé</a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<main id="main">
 <div class="wrap">
 
-  <nav>
-    <div class="logo">Nate Thomas</div>
-    <div class="links">
-      <a href="#work">Work</a>
-      <a href="#builder">Builder</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="badge">Toronto, ON</div>
     <h1>
       AI PM.<br>
@@ -210,6 +370,7 @@
         </div>
       </div>
       <div class="facts">
+        <div class="facts-head">At a glance</div>
         <div class="fact"><b>Currently</b><span>AI PM, Momentus Technologies</span></div>
         <div class="fact"><b>Focus</b><span>Ask Momentus + AI platform</span></div>
         <div class="fact"><b>Previously</b><span>Pendo · Cvent · Socotra</span></div>
@@ -226,7 +387,7 @@
     </div>
 
     <div class="entry">
-      <div class="yr">'26 — now</div>
+      <div class="yr"><span class="idx">01</span><span class="date">'26 — now</span></div>
       <div>
         <h3>Momentus Technologies</h3>
         <div class="role">AI Product Manager</div>
@@ -239,7 +400,7 @@
     </div>
 
     <div class="entry">
-      <div class="yr">'25 — '26</div>
+      <div class="yr"><span class="idx">02</span><span class="date">'25 — '26</span></div>
       <div>
         <h3>Pendo</h3>
         <div class="role">PM, Platform &amp; Enterprise</div>
@@ -252,7 +413,7 @@
     </div>
 
     <div class="entry">
-      <div class="yr">'22 — '24</div>
+      <div class="yr"><span class="idx">03</span><span class="date">'22 — '24</span></div>
       <div>
         <h3>Cvent</h3>
         <div class="role">Associate Product Manager</div>
@@ -279,30 +440,33 @@
           <span class="k">Founder — Agentic SaaS</span>
           <h3>StackKeep</h3>
           <p>My startup. An agent that audits a company's Google Workspace, finds the SaaS seats nobody uses, and handles cleanup in Slack. Free audit — I charge 20% of verified savings, so I only make money when I save someone money. It's taught me more about building with AI than anything else, mostly by breaking.</p>
-          <span class="go">stackkeep.com →</span>
+          <span class="go"><i>stackkeep.com <span class="arw">→</span></i></span>
         </a>
-        <a class="proj" href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
+        <a class="proj alt" href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
           <span class="k">Side project — Open data</span>
           <h3>TennisBud</h3>
           <p>I play tennis in Toronto, which mostly means fighting for courts. So I mapped every public one from the city's open data — lights, distance, court count — and added a heuristic that guesses how busy a park will be before you bike over.</p>
-          <span class="go">tennisbud.vercel.app →</span>
+          <span class="go"><i>tennisbud.vercel.app <span class="arw">→</span></i></span>
         </a>
       </div>
     </section>
   </div>
 </div>
+</main>
 
 <footer id="contact">
   <div class="wrap">
     <div class="cta">Say <span>hi.</span></div>
     <div class="btns">
       <a class="btn" href="mailto:nathansamthomas@gmail.com">Email</a>
-      <a class="btn" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
+      <a class="btn ghost" href="/nate-thomas-resume.pdf">Résumé (PDF)</a>
     </div>
     <div class="fine">
       <span>© 2026 Nate Thomas — Toronto, ON</span>
-      <span>nathansamthomas@gmail.com</span>
+      <span><a href="mailto:nathansamthomas@gmail.com">nathansamthomas@gmail.com</a></span>
+      <span><a href="#top">Back to top ↑</a></span>
     </div>
   </div>
 </footer>
