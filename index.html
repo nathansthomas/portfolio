@@ -23,6 +23,23 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d9ff3d'/><text x='50' y='68' font-size='48' text-anchor='middle' font-family='Arial Black' font-weight='900'>NT</text></svg>">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>
+  /* Runs before the body paints: an explicit choice is re-applied here so the
+     page never flashes the wrong theme. No choice stored = no attribute, and
+     the prefers-color-scheme block below takes over. */
+  (function () {
+    var r = document.documentElement;
+    r.setAttribute('data-js', '');
+    try {
+      var v = localStorage.getItem('nt-theme');
+      if (v === 'light' || v === 'dark') r.setAttribute('data-theme', v);
+    } catch (e) {}
+    var dark = r.getAttribute('data-theme') === 'dark' ||
+      (!r.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', dark ? '#1e1c15' : '#14130e');
+  })();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,18 +63,90 @@
 </script>
 <style>
   :root {
+    color-scheme: light;
+
+    /* page surface + text — these are the tokens that flip */
     --paper: #f4f1e8;
     --ink: #14130e;
     --ink-2: #33302a;
+    --ink-lede: #2a2822;
     --dim: #6b6558;
-    --dim-dark: #9a937f;
     --rule: #ddd6c6;
+
+    /* The inverted bands (ticker, builder, footer) are their own surface.
+       In light they're ink on paper; in dark they lift *off* the page rather
+       than dissolving into it, so the page still reads as a stack of bands. */
+    --band: #14130e;
+    --band-fg: #f4f1e8;
+    --band-fg-2: #cfc9b6;
+    --band-edge: transparent;
+    --band-dim: #a29b88;
+    --band-rule: #35322a;
+    --band-btn-line: #514d43;
+    --band-link-line: #46433a;
+    --dim-dark: #9a937f;
+
+    --nav-bg: rgba(244, 241, 232, .9);
+    --nav-edge: #14130e;
+
+    /* Lime is a light colour in either theme, so anything sitting on lime
+       stays dark ink — it must never follow the page foreground. */
     --lime: #d9ff3d;
+    --lime-band: #d9ff3d;
     --lime-deep: #b8e02a;
+    --on-lime: #14130e;
+    --on-lime-2: #1e1d16;
+    --on-lime-dim: #2f2d1e;
+    --on-lime-rule: rgba(20, 19, 14, .22);
+
+    --grain: .045;
 
     --gut: clamp(24px, 4vw, 40px);
     --bay: clamp(64px, 8vw, 104px);
     --nav-h: 74px;
+  }
+
+  /* ── dark mode ──────────────────────────
+     Two paired blocks on purpose: the media query means the page follows the
+     OS with no JavaScript at all, and the attribute means an explicit pick
+     from the toggle still wins over the OS. Keep the two in sync. */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #15140f;
+    --ink: #f1eee2;
+    --ink-2: #d5d0be;
+    --ink-lede: #d5d0be;
+    --dim: #a29a85;
+    --rule: #302c22;
+    --band: #1e1c15;
+    --band-fg: #f1eee2;
+    --band-edge: #322e23;
+    --band-rule: #3a3629;
+    --dim-dark: #a29a85;
+    --nav-bg: rgba(21, 20, 15, .88);
+    --nav-edge: #3a3629;
+    --lime-band: #c6ea31;
+    --grain: .055;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #15140f;
+      --ink: #f1eee2;
+      --ink-2: #d5d0be;
+      --ink-lede: #d5d0be;
+      --dim: #a29a85;
+      --rule: #302c22;
+      --band: #1e1c15;
+      --band-fg: #f1eee2;
+      --band-edge: #322e23;
+      --band-rule: #3a3629;
+      --dim-dark: #a29a85;
+      --nav-bg: rgba(21, 20, 15, .88);
+      --nav-edge: #3a3629;
+      --lime-band: #c6ea31;
+      --grain: .055;
+    }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -76,7 +165,7 @@
   /* Paper grain — the whole thing is pretending to be newsprint, so let it. */
   body::after {
     content: ""; position: fixed; inset: 0; z-index: 200; pointer-events: none;
-    opacity: .045;
+    opacity: var(--grain);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -84,8 +173,8 @@
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
   }
-  .hl { background: var(--lime); color: var(--ink); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  ::selection { background: var(--lime); color: var(--ink); }
+  .hl { background: var(--lime); color: var(--on-lime); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  ::selection { background: var(--lime); color: var(--on-lime); }
 
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gut); }
 
@@ -98,7 +187,7 @@
 
   .skip {
     position: absolute; left: -9999px; top: 0; z-index: 300;
-    background: var(--lime); color: var(--ink); padding: 14px 22px;
+    background: var(--lime); color: var(--on-lime); padding: 14px 22px;
     font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
     text-decoration: none;
   }
@@ -106,7 +195,7 @@
 
   /* ── ticker ─────────────────────────── */
   .ticker {
-    background: var(--ink); color: var(--lime);
+    background: var(--band); color: var(--lime);
     font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
     padding: 11px 0; overflow: hidden;
   }
@@ -119,10 +208,10 @@
   /* ── nav ────────────────────────────── */
   .navbar {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(244, 241, 232, .9);
+    background: var(--nav-bg);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
     backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 2px solid var(--nav-edge);
   }
   nav {
     display: flex; justify-content: space-between; align-items: center;
@@ -130,7 +219,7 @@
   }
   nav .logo {
     font-weight: 900; font-size: 17px; letter-spacing: -0.02em; text-transform: uppercase;
-    text-decoration: none;
+    text-decoration: none; margin-right: auto;
   }
   nav .links { display: flex; align-items: center; gap: 26px; }
   nav .links a {
@@ -141,9 +230,34 @@
   nav .links a:hover { border-color: var(--lime-deep); }
   nav .links a.pill {
     border: 2px solid var(--ink); border-radius: 100px; padding: 6px 16px;
-    background: var(--lime); transition: background .2s, color .2s;
+    background: var(--lime); color: var(--on-lime); transition: background .2s, color .2s;
   }
-  nav .links a.pill:hover { background: var(--ink); color: var(--lime); }
+  nav .links a.pill:hover { background: var(--band); color: var(--lime); }
+
+  /* ── theme toggle ───────────────────── */
+  .vh {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+  /* Without JS the button can't do anything, so it never shows up — the
+     prefers-color-scheme block still gives those visitors a dark page. */
+  .theme-toggle { display: none; }
+  :root[data-js] .theme-toggle {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: inherit; font-size: 12px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink); background: transparent;
+    border: 2px solid var(--ink); border-radius: 100px;
+    padding: 5px 15px 5px 12px; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .theme-toggle:hover { background: var(--band); color: var(--lime); }
+  .theme-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  .theme-toggle svg { width: 15px; height: 15px; display: block; }
+  .theme-toggle .ico { display: none; }
+  .theme-toggle[data-mode="auto"] .ico-auto,
+  .theme-toggle[data-mode="light"] .ico-light,
+  .theme-toggle[data-mode="dark"] .ico-dark { display: block; }
 
   /* ── hero ───────────────────────────── */
   header.hero { padding: clamp(56px, 8vw, 96px) 0 var(--bay); }
@@ -152,7 +266,7 @@
     margin-bottom: clamp(28px, 4vw, 40px);
   }
   .badge {
-    display: inline-block; background: var(--ink); color: var(--lime);
+    display: inline-block; background: var(--band); color: var(--lime);
     font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
     padding: 9px 20px; transform: rotate(-2deg);
   }
@@ -186,7 +300,7 @@
   }
   .lede {
     font-family: Georgia, serif; font-size: clamp(19px, 2.2vw, 23px);
-    line-height: 1.6; color: #2a2822; max-width: 54ch;
+    line-height: 1.6; color: var(--ink-lede); max-width: 54ch;
   }
   .lede + .lede { margin-top: 20px; }
 
@@ -209,23 +323,26 @@
     font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
     border: 2px solid var(--ink); transition: background .18s, color .18s;
   }
-  .hero-cta a.primary { background: var(--ink); color: var(--lime); }
+  .hero-cta a.primary { background: var(--band); color: var(--lime); }
   .hero-cta a.primary:hover { background: transparent; color: var(--ink); }
   .hero-cta a.secondary { background: transparent; color: var(--ink); }
-  .hero-cta a.secondary:hover { background: var(--ink); color: var(--lime); }
+  .hero-cta a.secondary:hover { background: var(--band); color: var(--lime); }
 
   /* ── proof band ─────────────────────── */
-  .proof { background: var(--lime); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .proof {
+    background: var(--lime-band); color: var(--on-lime);
+    border-top: 2px solid var(--on-lime); border-bottom: 2px solid var(--on-lime);
+  }
   .proof .wrap {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 40px);
     padding-top: clamp(40px, 5vw, 56px); padding-bottom: clamp(40px, 5vw, 56px);
   }
-  .proof .stat + .stat { border-left: 1px solid rgba(20, 19, 14, .22); padding-left: clamp(24px, 3vw, 40px); }
+  .proof .stat + .stat { border-left: 1px solid var(--on-lime-rule); padding-left: clamp(24px, 3vw, 40px); }
   .proof .stat b {
     display: block; font-size: clamp(36px, 5vw, 60px); font-weight: 900;
     letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
   }
-  .proof .stat span { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: #2f2d1e; }
+  .proof .stat span { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: var(--on-lime-dim); }
 
   /* ── toolkit strip ──────────────────── */
   .toolkit { border-bottom: 1px solid var(--rule); }
@@ -265,7 +382,7 @@
   .entry:last-child { border-bottom: none; padding-bottom: 0; }
   .entry .yr { padding-top: 6px; }
   .entry .idx {
-    display: inline-block; background: var(--lime); color: var(--ink);
+    display: inline-block; background: var(--lime); color: var(--on-lime);
     font-size: 12px; font-weight: 900; letter-spacing: .16em;
     padding: 5px 10px; font-variant-numeric: tabular-nums;
   }
@@ -277,7 +394,7 @@
   .entry .role { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
   .entry .desc { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
   .entry .desc + .desc { margin-top: 14px; }
-  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); color: var(--ink); padding: 0 6px; white-space: nowrap; }
+  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); color: var(--on-lime); padding: 0 6px; white-space: nowrap; }
   .entry .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
   .entry .tag {
     font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
@@ -285,15 +402,20 @@
   }
 
   /* ── builder (dark) ─────────────────── */
-  .dark { background: var(--ink); color: var(--paper); }
+  .dark {
+    background: var(--band); color: var(--band-fg);
+    /* inset rather than a border so the light theme's transparent edge
+       doesn't cost the page a pixel of height */
+    box-shadow: inset 0 1px 0 var(--band-edge);
+  }
   .dark section { padding-bottom: 0; } /* footer's own bay carries the gap */
   .dark .sec-note { color: var(--dim-dark); }
   .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 32px); }
   .proj {
     display: flex; flex-direction: column; align-items: flex-start;
-    text-decoration: none; color: var(--ink);
-    background: var(--lime); padding: clamp(30px, 4vw, 46px);
-    border: 3px solid var(--lime);
+    text-decoration: none; color: var(--on-lime);
+    background: var(--lime-band); padding: clamp(30px, 4vw, 46px);
+    border: 3px solid var(--lime-band);
     transition: transform .2s ease;
   }
   .proj:hover, .proj:focus-visible { transform: rotate(-1deg) scale(1.015); }
@@ -302,26 +424,26 @@
     border-bottom: 2px solid currentColor; padding-bottom: 7px;
   }
   .proj h3 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 18px; line-height: 0.95; }
-  .proj p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; color: #1e1d16; }
+  .proj p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; color: var(--on-lime-2); }
   .proj .go {
     margin-top: auto; padding-top: 30px;
     font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   }
   .proj .go i {
     font-style: normal; display: inline-block;
-    background: var(--ink); color: var(--lime); padding: 12px 26px;
+    background: var(--band); color: var(--lime); padding: 12px 26px;
   }
   .proj .go .arw { display: inline-block; transition: transform .2s ease; }
   .proj:hover .go .arw { transform: translateX(5px); }
 
   /* second card inverts, so the pair reads as a set instead of a repeat */
-  .proj.alt { background: transparent; border-color: var(--paper); color: var(--paper); }
-  .proj.alt p { color: #cfc9b6; }
+  .proj.alt { background: transparent; border-color: var(--band-fg); color: var(--band-fg); }
+  .proj.alt p { color: var(--band-fg-2); }
   .proj.alt:hover, .proj.alt:focus-visible { transform: rotate(1deg) scale(1.015); }
-  .proj.alt .go i { background: var(--paper); color: var(--ink); }
+  .proj.alt .go i { background: var(--band-fg); color: var(--band); }
 
   /* ── footer ─────────────────────────── */
-  footer { background: var(--ink); color: var(--paper); padding: var(--bay) 0 48px; }
+  footer { background: var(--band); color: var(--band-fg); padding: var(--bay) 0 48px; }
   footer .cta { font-size: clamp(46px, 8vw, 100px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; }
   footer .cta span { color: var(--lime); }
   footer .cta-note {
@@ -332,18 +454,18 @@
   footer a.btn {
     display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em;
     text-transform: uppercase; padding: 16px 34px; text-decoration: none;
-    background: var(--lime); color: var(--ink); border: 2px solid var(--lime);
+    background: var(--lime-band); color: var(--on-lime); border: 2px solid var(--lime-band);
     transition: background .18s, color .18s;
   }
   footer a.btn:hover { background: transparent; color: var(--lime); }
-  footer a.btn.ghost { background: transparent; color: var(--paper); border-color: #514d43; }
-  footer a.btn.ghost:hover { border-color: var(--paper); background: var(--paper); color: var(--ink); }
+  footer a.btn.ghost { background: transparent; color: var(--band-fg); border-color: var(--band-btn-line); }
+  footer a.btn.ghost:hover { border-color: var(--band-fg); background: var(--band-fg); color: var(--band); }
   footer .fine {
-    margin-top: clamp(48px, 7vw, 72px); padding-top: 24px; border-top: 1px solid #35322a;
-    font-size: 12px; color: #a29b88; letter-spacing: .14em; text-transform: uppercase;
+    margin-top: clamp(48px, 7vw, 72px); padding-top: 24px; border-top: 1px solid var(--band-rule);
+    font-size: 12px; color: var(--band-dim); letter-spacing: .14em; text-transform: uppercase;
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   }
-  footer .fine a { text-decoration: none; border-bottom: 1px solid #46433a; padding-bottom: 2px; }
+  footer .fine a { text-decoration: none; border-bottom: 1px solid var(--band-link-line); padding-bottom: 2px; }
   footer .fine a:hover { color: var(--lime); border-color: var(--lime); }
 
   /* ── responsive ─────────────────────── */
@@ -356,6 +478,8 @@
   }
   @media (max-width: 780px) {
     :root { --nav-h: 8px; }
+    :root[data-js] .theme-toggle { padding: 5px; gap: 0; }
+    .theme-toggle .theme-lbl { display: none; }
     .hero-grid { grid-template-columns: 1fr; }
     .navbar { position: static; }
     nav { padding: 16px 0; }
@@ -365,6 +489,12 @@
     .hero-cta a { flex: 1 1 auto; text-align: center; }
   }
   @media (max-width: 560px) {
+    /* once the nav wraps, the toggle reorders up beside the logo so the links
+       keep the second row to themselves instead of shoving the Résumé pill
+       onto a third */
+    nav .logo { order: 1; }
+    nav .theme-toggle { order: 2; }
+    nav .links { order: 3; flex: 1 1 100%; }
     .entry { grid-template-columns: 1fr; gap: 18px; }
     .entry .yr { padding-top: 0; grid-row: auto; }
     .entry .date { display: inline-block; margin: 0 0 0 12px; }
@@ -372,7 +502,7 @@
     .facts span { text-align: left; }
     h1 .outline { -webkit-text-stroke-width: 1.5px; }
     .proof .wrap { grid-template-columns: 1fr; }
-    .proof .stat + .stat { border-left: none; padding-left: 0; padding-top: 24px; border-top: 1px solid rgba(20, 19, 14, .22); }
+    .proof .stat + .stat { border-left: none; padding-left: 0; padding-top: 24px; border-top: 1px solid var(--on-lime-rule); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -388,6 +518,19 @@
   }
 
   @media print {
+    /* Paper is paper. Pin the light palette no matter what's on screen. */
+    :root, :root[data-theme], :root:not([data-theme="light"]) {
+      color-scheme: light !important;
+      --paper: #fff !important; --ink: #000 !important; --ink-2: #222 !important;
+      --ink-lede: #222 !important;
+      --dim: #444 !important; --rule: #ccc !important;
+      --band: #fff !important; --band-fg: #000 !important; --band-fg-2: #333 !important;
+      --band-edge: #000 !important; --band-dim: #444 !important;
+      --band-rule: #999 !important; --band-btn-line: #999 !important;
+      --band-link-line: #999 !important;
+      --dim-dark: #444 !important;
+      --lime-band: #fff !important; --grain: 0 !important;
+    }
     body { background: #fff; color: #000; }
     body::after, .ticker, .navbar, .skip { display: none; }
     .dark, footer { background: #fff !important; color: #000 !important; }
@@ -428,6 +571,12 @@
         <a href="#contact">Contact</a>
         <a class="pill" href="/nate-thomas-resume.pdf">Résumé</a>
       </div>
+      <button class="theme-toggle" type="button" id="theme-toggle" data-mode="auto" aria-live="polite">
+        <span class="ico ico-auto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></span>
+        <span class="ico ico-light" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></svg></span>
+        <span class="ico ico-dark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></span>
+        <span class="vh">Theme: </span><span class="theme-lbl">Auto</span>
+      </button>
     </nav>
   </div>
 </div>
@@ -539,7 +688,7 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <h2 class="loud loud-title" style="color:var(--paper)">After <span class="hl">hours</span></h2>
+        <h2 class="loud loud-title" style="color:var(--band-fg)">After <span class="hl">hours</span></h2>
         <span class="sec-note">things I build for fun, and occasionally for money</span>
       </div>
       <div class="proj-grid">
@@ -578,6 +727,63 @@
     </div>
   </div>
 </footer>
+
+<script>
+  /* Theme control. Three states, cycled by the nav button:
+       auto  — no data-theme attribute, so the CSS media query decides
+       light — data-theme="light", pinned
+       dark  — data-theme="dark", pinned
+     Auto is the default and it stays live: if the OS flips while the page is
+     open, the page flips with it. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var KEY = 'nt-theme';
+    var ORDER = ['auto', 'light', 'dark'];
+    var LABEL = { auto: 'Auto', light: 'Light', dark: 'Dark' };
+    var TONE = { light: '#14130e', dark: '#1e1c15' };
+    var mode;
+
+    try {
+      var v = localStorage.getItem(KEY);
+      mode = (v === 'light' || v === 'dark') ? v : 'auto';
+    } catch (e) { mode = 'auto'; }
+
+    function resolved() { return mode === 'auto' ? (mq.matches ? 'dark' : 'light') : mode; }
+
+    function apply() {
+      if (mode === 'auto') root.removeAttribute('data-theme');
+      else root.setAttribute('data-theme', mode);
+
+      var now = resolved();
+      if (meta) meta.setAttribute('content', TONE[now]);
+      if (!btn) return;
+      btn.setAttribute('data-mode', mode);
+      btn.querySelector('.theme-lbl').textContent = LABEL[mode];
+      var next = LABEL[ORDER[(ORDER.indexOf(mode) + 1) % ORDER.length]].toLowerCase();
+      btn.title = mode === 'auto'
+        ? 'Theme: auto — matching your system (' + now + '). Switch to ' + next + '.'
+        : 'Theme: ' + LABEL[mode].toLowerCase() + '. Switch to ' + next + '.';
+    }
+
+    if (btn) btn.addEventListener('click', function () {
+      mode = ORDER[(ORDER.indexOf(mode) + 1) % ORDER.length];
+      try {
+        if (mode === 'auto') localStorage.removeItem(KEY);
+        else localStorage.setItem(KEY, mode);
+      } catch (e) {}
+      apply();
+    });
+
+    function onSystemChange() { if (mode === 'auto') apply(); }
+    if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
+    else if (mq.addListener) mq.addListener(onSystemChange);
+
+    apply();
+  })();
+</script>
 
 </body>
 </html>
