@@ -1,0 +1,35 @@
+# Nate Thomas
+
+> Nate Thomas is an AI product manager at Momentus Technologies in Toronto, where he owns Ask Momentus, the company's flagship AI product, and leads its AI platform work: an agent-building framework and the evals strategy used across the company. He is the founder of StackKeep and the builder of TennisBud. He previously worked as a product manager at Pendo and Cvent.
+
+## Quick facts
+
+- Name: Nate Thomas (Nathan Thomas)
+- Role: AI Product Manager, Momentus Technologies (2026–present)
+- Based in: Toronto, Ontario, Canada
+- Focus: AI/LLM products, AI agents, AI evals, platform and enterprise products
+- Founder of: StackKeep (https://stackkeep.com)
+- Education: Honors Business Administration (HBA) and English, Ivey Business School, Western University
+- Contact: nathansamthomas@gmail.com · https://www.linkedin.com/in/nathansamthomas
+
+## Experience
+
+- **Momentus Technologies, AI Product Manager (2026–present).** Owns Ask Momentus, the flagship AI product. Led a full UX overhaul that lifted adoption 10%, and turned a single chatbot into an agent-building framework that other product teams now ship on. Wrote the evals strategy the company uses to measure AI feature quality.
+- **Pendo, Product Manager, Platform & Enterprise (2025–2026).** Found through customer discovery that multi-IdP SSO was blocking enterprise deals, made the case to leadership, and shipped federation for Okta, ADFS, and AzureAD, which unlocked $10M+ ARR in Fortune 500 accounts. Led platform-wide internationalization (+10% win rates in Japan, Germany, and LatAm) and shipped an enterprise console that cut setup time by 40%.
+- **Cvent, Associate Product Manager (2022–2024).** Led the 0-to-1 for an LLM-powered onboarding agent in 2022, now live with thousands of customers (+5 CSAT). Recovered $500k+ ARR through SQL cohort analysis of buyer-user misalignment, and drove +25% feature adoption by A/B testing six core product events.
+- **Socotra, GTM Strategy & Operations Lead (2021).** Founding Sales Ops hire at a Series C insurance-core startup.
+
+## Projects
+
+- [StackKeep](https://stackkeep.com): Nate's startup. An AI agent that audits a company's Google Workspace, finds SaaS seats nobody uses, and handles cleanup in Slack. The audit is free; StackKeep charges 20% of verified savings.
+- [TennisBud](https://tennisbud.vercel.app): A map of every public tennis court in Toronto, built from the City of Toronto's open data, with lights, distance, court count, and a heuristic that estimates how busy a park will be.
+
+## Get in touch
+
+Nate is always up for a conversation with people building AI products. Email (nathansamthomas@gmail.com) is the fastest way to reach him; LinkedIn works too.
+
+## Links
+
+- [Portfolio](https://www.nthomas.co/)
+- [Résumé (PDF)](https://www.nthomas.co/nate-thomas-resume.pdf)
+- [LinkedIn](https://www.linkedin.com/in/nathansamthomas)

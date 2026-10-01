@@ -4,21 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nate Thomas — AI Product Manager & Builder</title>
-<meta name="description" content="Nate Thomas is an AI product manager in Toronto, open to San Francisco and New York. He owns Ask Momentus and the AI platform work at Momentus Technologies. Founder of StackKeep. Builder of TennisBud.">
-<link rel="canonical" href="https://nthomas.co/">
+<meta name="description" content="Nate Thomas is an AI product manager at Momentus Technologies, where he owns Ask Momentus and the company's AI platform work. Founder of StackKeep. Builder of TennisBud. Based in Toronto.">
+<link rel="canonical" href="https://www.nthomas.co/">
+<link rel="alternate" type="text/markdown" title="llms.txt" href="/llms.txt">
 <meta name="theme-color" content="#14130e">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://nthomas.co/">
+<meta property="og:url" content="https://www.nthomas.co/">
 <meta property="og:title" content="Nate Thomas — AI Product Manager & Builder">
-<meta property="og:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON — open to San Francisco and New York.">
-<meta property="og:image" content="https://nthomas.co/og-image.png">
+<meta property="og:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON.">
+<meta property="og:image" content="https://www.nthomas.co/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nate Thomas — AI Product Manager & Builder">
-<meta name="twitter:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON — open to San Francisco and New York.">
-<meta name="twitter:image" content="https://nthomas.co/og-image.png">
+<meta name="twitter:description" content="AI PM at Momentus Technologies. Owner of Ask Momentus and the AI platform work. Founder of StackKeep. Toronto, ON.">
+<meta name="twitter:image" content="https://www.nthomas.co/og-image.png">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d9ff3d'/><text x='50' y='68' font-size='48' text-anchor='middle' font-family='Arial Black' font-weight='900'>NT</text></svg>">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -43,21 +44,75 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nate Thomas",
-  "jobTitle": "AI Product Manager",
-  "url": "https://nthomas.co/",
-  "email": "mailto:nathansamthomas@gmail.com",
-  "worksFor": { "@type": "Organization", "name": "Momentus Technologies" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
-  "sameAs": [
-    "https://www.linkedin.com/in/nathansamthomas",
-    "https://stackkeep.com"
-  ],
-  "knowsAbout": [
-    "AI product management", "LLM agents", "Agent frameworks", "AI evaluations",
-    "0 to 1 product", "Enterprise SaaS", "Single sign-on", "Internationalization",
-    "A/B testing", "SQL"
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.nthomas.co/#profile",
+      "url": "https://www.nthomas.co/",
+      "name": "Nate Thomas — AI Product Manager & Builder",
+      "dateModified": "2026-10-01",
+      "inLanguage": "en",
+      "mainEntity": { "@id": "https://www.nthomas.co/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.nthomas.co/#person",
+      "name": "Nate Thomas",
+      "alternateName": "Nathan Thomas",
+      "givenName": "Nate",
+      "familyName": "Thomas",
+      "url": "https://www.nthomas.co/",
+      "image": "https://www.nthomas.co/og-image.png",
+      "email": "mailto:nathansamthomas@gmail.com",
+      "jobTitle": "AI Product Manager",
+      "description": "AI product manager at Momentus Technologies, where he owns Ask Momentus, the company's flagship AI product, and leads its agent framework and AI evals strategy. Founder of StackKeep. Previously a product manager at Pendo and Cvent. Based in Toronto.",
+      "worksFor": { "@type": "Organization", "name": "Momentus Technologies" },
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "AI Product Manager",
+        "occupationLocation": { "@type": "City", "name": "Toronto" },
+        "skills": "AI/LLM product development, AI agents and agent frameworks, AI evals, platform and enterprise products, SSO and identity, internationalization, A/B testing, SQL"
+      },
+      "founder": { "@id": "https://stackkeep.com/#org" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Ivey Business School, Western University" },
+        { "@type": "Organization", "name": "Pendo", "url": "https://www.pendo.io" },
+        { "@type": "Organization", "name": "Cvent", "url": "https://www.cvent.com" },
+        { "@type": "Organization", "name": "Socotra" }
+      ],
+      "knowsAbout": [
+        "AI product management", "LLM agents", "Agent frameworks", "AI evaluations",
+        "0 to 1 product", "Enterprise SaaS", "Single sign-on", "Internationalization",
+        "A/B testing", "SQL"
+      ],
+      "sameAs": [ "https://www.linkedin.com/in/nathansamthomas" ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://stackkeep.com/#org",
+      "name": "StackKeep",
+      "url": "https://stackkeep.com",
+      "description": "An AI agent that audits a company's Google Workspace, finds unused SaaS seats, and handles cleanup in Slack. Free audit; priced at 20% of verified savings.",
+      "founder": { "@id": "https://www.nthomas.co/#person" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "TennisBud",
+      "url": "https://tennisbud.vercel.app",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Web",
+      "description": "A map of every public tennis court in Toronto, built from the City of Toronto's open data, with lights, distance, court count, and a heuristic that estimates how busy each park is.",
+      "creator": { "@id": "https://www.nthomas.co/#person" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.nthomas.co/#website",
+      "url": "https://www.nthomas.co/",
+      "name": "Nate Thomas",
+      "publisher": { "@id": "https://www.nthomas.co/#person" }
+    }
   ]
 }
 </script>
@@ -199,7 +254,7 @@
     font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
     padding: 11px 0; overflow: hidden;
   }
-  .ticker-track { display: flex; width: max-content; animation: scroll 55s linear infinite; }
+  .ticker-track { display: flex; width: max-content; animation: scroll 44s linear infinite; }
   .ticker-seq { display: flex; flex: none; }
   .ticker-seq span { padding: 0 18px; white-space: nowrap; }
   .ticker-seq span::after { content: "✳"; margin-left: 18px; color: var(--lime-deep); }
@@ -554,10 +609,10 @@
 
 <div class="ticker" aria-hidden="true"><div class="ticker-track">
   <div class="ticker-seq">
-    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span><span>San Francisco</span><span>New York</span>
+    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
   </div>
   <div class="ticker-seq">
-    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span><span>San Francisco</span><span>New York</span>
+    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
   </div>
 </div></div>
 
@@ -610,7 +665,6 @@
         <div class="fact"><b>Previously</b><span>Pendo · Cvent · Socotra</span></div>
         <div class="fact"><b>After hours</b><span>StackKeep (founder) · TennisBud</span></div>
         <div class="fact"><b>Based in</b><span>Toronto, ON</span></div>
-        <div class="fact"><b>Open to</b><span>San Francisco · New York</span></div>
       </div>
     </div>
   </header>
