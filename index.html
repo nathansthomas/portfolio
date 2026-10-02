@@ -38,7 +38,7 @@
     var dark = r.getAttribute('data-theme') === 'dark' ||
       (!r.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', dark ? '#1e1c15' : '#14130e');
+    if (m) m.setAttribute('content', dark ? '#26241b' : '#14130e');
   })();
 </script>
 <script type="application/ld+json">
@@ -137,7 +137,7 @@
     --band-edge: transparent;
     --band-dim: #a29b88;
     --band-rule: #35322a;
-    --band-btn-line: #514d43;
+    --band-btn-line: #6a6558;
     --band-link-line: #46433a;
     --dim-dark: #9a937f;
 
@@ -173,9 +173,10 @@
     --ink-lede: #d5d0be;
     --dim: #a29a85;
     --rule: #302c22;
-    --band: #1e1c15;
+    --band: #26241b;
     --band-fg: #f1eee2;
-    --band-edge: #322e23;
+    --band-edge: #3d3929;
+    --band-btn-line: #7d7766;
     --band-rule: #3a3629;
     --dim-dark: #a29a85;
     --nav-bg: rgba(21, 20, 15, .88);
@@ -192,9 +193,10 @@
       --ink-lede: #d5d0be;
       --dim: #a29a85;
       --rule: #302c22;
-      --band: #1e1c15;
+      --band: #26241b;
       --band-fg: #f1eee2;
-      --band-edge: #322e23;
+      --band-edge: #3d3929;
+      --band-btn-line: #7d7766;
       --band-rule: #3a3629;
       --dim-dark: #a29a85;
       --nav-bg: rgba(21, 20, 15, .88);
@@ -320,7 +322,8 @@
     transform: rotate(1.5deg);
   }
   .status .dot {
-    width: 9px; height: 9px; border-radius: 50%; background: var(--lime-deep);
+    width: 10px; height: 10px; border-radius: 50%; background: var(--lime-deep);
+    border: 1.5px solid var(--ink);
     box-shadow: 0 0 0 0 rgba(184, 224, 42, .7); animation: pulse 2.6s ease-out infinite;
   }
   @keyframes pulse {
@@ -353,14 +356,14 @@
   }
   .lede + .lede { margin-top: 20px; }
 
-  .facts { font-size: 14px; font-variant-numeric: tabular-nums; }
+  .facts { font-size: 15px; font-variant-numeric: tabular-nums; }
   .facts .fact {
-    display: flex; justify-content: space-between; gap: 20px;
+    display: grid; grid-template-columns: 7.5em 1fr; gap: 20px;
     padding: 14px 2px; border-top: 1px solid var(--rule);
   }
   .facts .fact:last-child { border-bottom: 1px solid var(--rule); }
   .facts b { font-weight: 700; white-space: nowrap; }
-  .facts span { color: var(--dim); text-align: right; }
+  .facts span { color: var(--ink-2); }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(28px, 4vw, 36px); }
   .hero-cta a {
     display: inline-block; text-decoration: none; padding: 15px 30px;
@@ -392,8 +395,8 @@
   section { padding: var(--bay) 0; }
   [id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
   .sec-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: clamp(36px, 5vw, 56px); gap: 24px; flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: flex-start;
+    margin-bottom: clamp(36px, 5vw, 56px); gap: 12px;
   }
   h2.loud-title { font-size: clamp(38px, 6vw, 72px); line-height: 0.95; }
   .sec-note { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--dim); text-wrap: balance; }
@@ -484,7 +487,10 @@
   @media (max-width: 780px) {
     :root { --nav-h: 8px; }
     :root[data-js] .theme-toggle { padding: 5px; gap: 0; }
-    .theme-toggle .theme-lbl { display: none; }
+    .theme-toggle .theme-lbl {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip-path: inset(50%); white-space: nowrap;
+    }
     .hero-grid { grid-template-columns: 1fr; }
     .navbar { position: static; }
     nav { padding: 16px 0; }
@@ -502,8 +508,8 @@
     nav .links { order: 3; flex: 1 1 100%; }
     .entry { grid-template-columns: 1fr; gap: 18px; }
     .entry .yr { padding-top: 0; grid-row: auto; }
-    .facts .fact { flex-direction: column; gap: 2px; }
-    .facts span { text-align: left; }
+    .facts .fact { grid-template-columns: 1fr; gap: 2px; }
+    h1 { line-height: 1; } /* keeps "builds" clear of the THINGS highlight */
     h1 .outline { -webkit-text-stroke-width: 1.5px; }
     .proof .wrap { grid-template-columns: 1fr; }
     .proof .stat + .stat { border-left: none; padding-left: 0; padding-top: 24px; border-top: 1px solid var(--on-lime-rule); }
@@ -519,6 +525,10 @@
     }
     .proj:hover, .proj:focus-visible,
     .proj.alt:hover, .proj.alt:focus-visible { transform: none; }
+  }
+
+  @media (forced-colors: active) {
+    h1 .outline { color: CanvasText; -webkit-text-stroke: 0; }
   }
 
   @media print {
@@ -541,7 +551,6 @@
     .dark .sec-note, footer .cta-note, footer .fine { color: #444 !important; }
     .proj { background: #fff !important; color: #000 !important; border: 1px solid #000 !important; }
     .proj p, .proj.alt p { color: #000 !important; }
-    .proj { background: #fff !important; color: #000 !important; border-color: #000 !important; }
     section, header.hero { padding: 24px 0; }
     .entry { break-inside: avoid; }
     .proof { background: #fff !important; border-color: #000 !important; }
@@ -574,7 +583,7 @@
         <a href="#contact">Contact</a>
         <a href="/nate-thomas-resume.pdf">Résumé</a>
       </div>
-      <button class="theme-toggle" type="button" id="theme-toggle" data-mode="auto" aria-live="polite">
+      <button class="theme-toggle" type="button" id="theme-toggle" data-mode="auto">
         <span class="ico ico-auto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></span>
         <span class="ico ico-light" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></svg></span>
         <span class="ico ico-dark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></span>
@@ -620,9 +629,9 @@
 <div class="proof">
   <div class="wrap">
     <div class="stat"><b>$10M+</b><span>ARR unlocked in Fortune&nbsp;500 accounts by shipping multi-IdP SSO</span></div>
+    <div class="stat"><b>$500k+</b><span>ARR recovered by catching buyer-user misalignment in SQL cohorts</span></div>
+    <div class="stat"><b>+10%</b><span>Win rates in Japan, Germany, and LatAm after platform-wide i18n</span></div>
     <div class="stat"><b>+25%</b><span>Feature adoption from A/B testing six core product events</span></div>
-    <div class="stat"><b>+10%</b><span>Adoption on Ask Momentus after a full UX overhaul</span></div>
-    <div class="stat"><b>+5</b><span>CSAT from an LLM onboarding agent shipped in 2022</span></div>
   </div>
 </div>
 
@@ -653,8 +662,8 @@
         <div class="role">PM, Platform &amp; Enterprise</div>
       </div>
       <div>
-        <p class="desc">Enterprise deals kept stalling on identity. I dug in with customers, found the blocker — multi-IdP SSO — made the case to leadership, and shipped federation for Okta, ADFS, and AzureAD. It was worth <span class="num">$10M+ ARR</span> in Fortune 500 accounts.</p>
-        <p class="desc">Also led internationalization across the whole platform (<span class="num">+10% win rates</span> in Japan, Germany, LatAm) and shipped an enterprise console that cut setup time by <span class="num">40%</span>.</p>
+        <p class="desc">Enterprise deals kept stalling on identity. I dug in with customers, found the blocker — multi-IdP SSO — made the case to leadership, and shipped federation for Okta, ADFS, and AzureAD. It was worth $10M+ ARR in Fortune 500 accounts.</p>
+        <p class="desc">Also led internationalization across the whole platform (+10% win rates in Japan, Germany, LatAm) and shipped an enterprise console that cut setup time by <span class="num">40%</span>.</p>
       </div>
     </div>
 
@@ -666,7 +675,7 @@
       </div>
       <div>
         <p class="desc">Led the 0-to-1 for an <span class="num">LLM onboarding agent</span> in 2022. It's live with thousands of customers now, <span class="num">+5 CSAT</span>.</p>
-        <p class="desc">Other things I'm proud of: <span class="num">$500k+ ARR</span> recovered by catching buyer-user misalignment in SQL cohorts, and <span class="num">+25% feature adoption</span> from A/B testing six core product events.</p>
+        <p class="desc">Other things I'm proud of: $500k+ ARR recovered by catching buyer-user misalignment in SQL cohorts, and +25% feature adoption from A/B testing six core product events.</p>
       </div>
     </div>
   </section>
@@ -677,7 +686,7 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <h2 class="loud loud-title" style="color:var(--band-fg)">After hours</h2>
+        <h2 class="loud loud-title">After hours</h2>
         <span class="sec-note">things I build for fun, and occasionally for money</span>
       </div>
       <div class="proj-grid">
@@ -730,7 +739,7 @@
     var KEY = 'nt-theme';
     var ORDER = ['auto', 'light', 'dark'];
     var LABEL = { auto: 'Auto', light: 'Light', dark: 'Dark' };
-    var TONE = { light: '#14130e', dark: '#1e1c15' };
+    var TONE = { light: '#14130e', dark: '#26241b' };
     var mode;
 
     try {
