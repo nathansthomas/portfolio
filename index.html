@@ -278,16 +278,10 @@
   }
   nav .links { display: flex; align-items: center; gap: 26px; }
   nav .links a {
-    color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 700;
     padding-bottom: 3px; border-bottom: 2px solid transparent; transition: border-color .2s;
   }
   nav .links a:hover { border-color: var(--lime-deep); }
-  nav .links a.pill {
-    border: 2px solid var(--ink); border-radius: 100px; padding: 6px 16px;
-    background: var(--lime); color: var(--on-lime); transition: background .2s, color .2s;
-  }
-  nav .links a.pill:hover { background: var(--band); color: var(--lime); }
 
   /* ── theme toggle ───────────────────── */
   .vh {
@@ -299,14 +293,13 @@
   .theme-toggle { display: none; }
   :root[data-js] .theme-toggle {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: inherit; font-size: 12px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
+    font-family: inherit; font-size: 14px; font-weight: 700;
     color: var(--ink); background: transparent;
     border: 2px solid var(--ink); border-radius: 100px;
     padding: 5px 15px 5px 12px; cursor: pointer;
     transition: background .2s, color .2s;
   }
-  .theme-toggle:hover { background: var(--band); color: var(--lime); }
+  .theme-toggle:hover { background: var(--ink); color: var(--paper); }
   .theme-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
   .theme-toggle svg { width: 15px; height: 15px; display: block; }
   .theme-toggle .ico { display: none; }
@@ -320,15 +313,10 @@
     display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
     margin-bottom: clamp(28px, 4vw, 40px);
   }
-  .badge {
-    display: inline-block; background: var(--band); color: var(--lime);
-    font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-    padding: 9px 20px; transform: rotate(-2deg);
-  }
   .status {
     display: inline-flex; align-items: center; gap: 9px; background: var(--paper);
-    font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-    border: 2px solid var(--ink); border-radius: 100px; padding: 7px 18px;
+    font-size: 14px; font-weight: 700;
+    border: 2px solid var(--ink); border-radius: 100px; padding: 6px 18px;
     transform: rotate(1.5deg);
   }
   .status .dot {
@@ -343,6 +331,12 @@
     font-weight: 900; text-transform: uppercase;
     font-size: clamp(52px, 9.5vw, 128px);
     line-height: 0.92; letter-spacing: -0.04em;
+  }
+  h1 .who {
+    display: block; margin-bottom: clamp(14px, 2vw, 22px);
+    font-family: Georgia, serif; font-weight: 400; font-style: normal;
+    font-size: clamp(24px, 3vw, 36px); line-height: 1.1;
+    text-transform: none; letter-spacing: -0.01em;
   }
   h1 .outline { color: transparent; -webkit-text-stroke: 2.5px var(--ink); }
   h1 .serif-accent {
@@ -360,28 +354,23 @@
   .lede + .lede { margin-top: 20px; }
 
   .facts { font-size: 14px; font-variant-numeric: tabular-nums; }
-  .facts-head {
-    font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--ink); display: inline-block;
-    border-bottom: 3px solid var(--lime-deep); padding-bottom: 6px; margin-bottom: 18px;
-  }
   .facts .fact {
     display: flex; justify-content: space-between; gap: 20px;
     padding: 14px 2px; border-top: 1px solid var(--rule);
   }
   .facts .fact:last-child { border-bottom: 1px solid var(--rule); }
-  .facts b { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; white-space: nowrap; }
+  .facts b { font-weight: 700; white-space: nowrap; }
   .facts span { color: var(--dim); text-align: right; }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(28px, 4vw, 36px); }
   .hero-cta a {
     display: inline-block; text-decoration: none; padding: 15px 30px;
-    font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    font-size: 16px; font-weight: 700;
     border: 2px solid var(--ink); transition: background .18s, color .18s;
   }
-  .hero-cta a.primary { background: var(--band); color: var(--lime); }
+  .hero-cta a.primary { background: var(--ink); color: var(--paper); }
   .hero-cta a.primary:hover { background: transparent; color: var(--ink); }
   .hero-cta a.secondary { background: transparent; color: var(--ink); }
-  .hero-cta a.secondary:hover { background: var(--band); color: var(--lime); }
+  .hero-cta a.secondary:hover { background: var(--ink); color: var(--paper); }
 
   /* ── proof band ─────────────────────── */
   .proof {
@@ -397,26 +386,7 @@
     display: block; font-size: clamp(36px, 5vw, 60px); font-weight: 900;
     letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
   }
-  .proof .stat span { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: var(--on-lime-dim); }
-
-  /* ── toolkit strip ──────────────────── */
-  .toolkit { border-bottom: 1px solid var(--rule); }
-  .toolkit .wrap {
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px clamp(20px, 3vw, 36px);
-    padding-top: 26px; padding-bottom: 26px;
-  }
-  .toolkit .lbl {
-    font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .toolkit .terms {
-    display: flex; flex-wrap: wrap;
-    font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--dim);
-  }
-  .toolkit .terms span { white-space: nowrap; }
-  .toolkit .terms span::after { content: "\00b7"; margin: 0 12px; color: var(--lime-deep); }
-  .toolkit .terms span:last-child::after { content: none; }
+  .proof .stat span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.45; color: var(--on-lime-dim); }
 
   /* ── sections ───────────────────────── */
   section { padding: var(--bay) 0; }
@@ -436,25 +406,15 @@
   .entry:first-child { padding-top: 0; }
   .entry:last-child { border-bottom: none; padding-bottom: 0; }
   .entry .yr { padding-top: 6px; }
-  .entry .idx {
-    display: inline-block; background: var(--lime); color: var(--on-lime);
-    font-size: 12px; font-weight: 900; letter-spacing: .16em;
-    padding: 5px 10px; font-variant-numeric: tabular-nums;
-  }
   .entry .date {
-    display: block; margin-top: 12px;
+    display: block;
     font-family: Georgia, serif; font-style: italic; font-size: 17px; color: var(--dim);
   }
   .entry h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; }
-  .entry .role { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
+  .entry .role { font-size: 16px; color: var(--dim); margin-top: 10px; }
   .entry .desc { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
   .entry .desc + .desc { margin-top: 14px; }
-  .entry .desc .num { font-family: Georgia, serif; font-style: italic; background: var(--lime); color: var(--on-lime); padding: 0 6px; white-space: nowrap; }
-  .entry .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
-  .entry .tag {
-    font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 100px; color: var(--ink);
-  }
+  .entry .desc .num { font-weight: 700; color: var(--ink); white-space: nowrap; }
 
   /* ── builder (dark) ─────────────────── */
   .dark {
@@ -468,60 +428,50 @@
   .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 32px); }
   .proj {
     display: flex; flex-direction: column; align-items: flex-start;
-    text-decoration: none; color: var(--on-lime);
-    background: var(--lime-band); padding: clamp(30px, 4vw, 46px);
-    border: 3px solid var(--lime-band);
+    text-decoration: none; color: var(--band);
+    background: var(--band-fg); padding: clamp(30px, 4vw, 46px);
+    border: 3px solid var(--band-fg);
     transition: transform .2s ease;
   }
   .proj:hover, .proj:focus-visible { transform: rotate(-1deg) scale(1.015); }
-  .proj .k {
-    font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-    border-bottom: 2px solid currentColor; padding-bottom: 7px;
-  }
-  .proj h3 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 18px; line-height: 0.95; }
-  .proj p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; color: var(--on-lime-2); }
+  .proj .k { font-family: Georgia, serif; font-style: italic; font-size: 17px; }
+  .proj h3 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 10px 0 18px; line-height: 0.95; }
+  .proj p { font-family: Georgia, serif; font-size: 17px; line-height: 1.65; }
   .proj .go {
-    margin-top: auto; padding-top: 30px;
-    font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    margin-top: auto; padding-top: 28px;
+    font-size: 16px; font-weight: 700;
+    text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px;
   }
-  .proj .go i {
-    font-style: normal; display: inline-block;
-    background: var(--band); color: var(--lime); padding: 12px 26px;
-  }
-  .proj .go .arw { display: inline-block; transition: transform .2s ease; }
-  .proj:hover .go .arw { transform: translateX(5px); }
 
   /* second card inverts, so the pair reads as a set instead of a repeat */
   .proj.alt { background: transparent; border-color: var(--band-fg); color: var(--band-fg); }
   .proj.alt p { color: var(--band-fg-2); }
   .proj.alt:hover, .proj.alt:focus-visible { transform: rotate(1deg) scale(1.015); }
-  .proj.alt .go i { background: var(--band-fg); color: var(--band); }
 
   /* ── footer ─────────────────────────── */
   footer { background: var(--band); color: var(--band-fg); padding: var(--bay) 0 48px; }
   footer .cta { font-size: clamp(46px, 8vw, 100px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; }
-  footer .cta span { color: var(--lime); }
   footer .cta-note {
     font-family: Georgia, serif; font-style: italic; font-size: clamp(17px, 2vw, 21px);
     color: var(--dim-dark); margin-top: 20px;
   }
   footer .btns { margin-top: clamp(32px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 16px; }
   footer a.btn {
-    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em;
-    text-transform: uppercase; padding: 16px 34px; text-decoration: none;
-    background: var(--lime-band); color: var(--on-lime); border: 2px solid var(--lime-band);
+    display: inline-block; font-size: 16px; font-weight: 700;
+    padding: 15px 32px; text-decoration: none;
+    background: var(--band-fg); color: var(--band); border: 2px solid var(--band-fg);
     transition: background .18s, color .18s;
   }
-  footer a.btn:hover { background: transparent; color: var(--lime); }
+  footer a.btn:hover { background: transparent; color: var(--band-fg); }
   footer a.btn.ghost { background: transparent; color: var(--band-fg); border-color: var(--band-btn-line); }
   footer a.btn.ghost:hover { border-color: var(--band-fg); background: var(--band-fg); color: var(--band); }
   footer .fine {
     margin-top: clamp(48px, 7vw, 72px); padding-top: 24px; border-top: 1px solid var(--band-rule);
-    font-size: 12px; color: var(--band-dim); letter-spacing: .14em; text-transform: uppercase;
+    font-size: 14px; color: var(--band-dim);
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   }
   footer .fine a { text-decoration: none; border-bottom: 1px solid var(--band-link-line); padding-bottom: 2px; }
-  footer .fine a:hover { color: var(--lime); border-color: var(--lime); }
+  footer .fine a:hover { color: var(--band-fg); border-color: var(--band-fg); }
 
   /* ── responsive ─────────────────────── */
   @media (max-width: 900px) {
@@ -545,14 +495,13 @@
   }
   @media (max-width: 560px) {
     /* once the nav wraps, the toggle reorders up beside the logo so the links
-       keep the second row to themselves instead of shoving the Résumé pill
+       keep the second row to themselves instead of shoving the Résumé link
        onto a third */
     nav .logo { order: 1; }
     nav .theme-toggle { order: 2; }
     nav .links { order: 3; flex: 1 1 100%; }
     .entry { grid-template-columns: 1fr; gap: 18px; }
     .entry .yr { padding-top: 0; grid-row: auto; }
-    .entry .date { display: inline-block; margin: 0 0 0 12px; }
     .facts .fact { flex-direction: column; gap: 2px; }
     .facts span { text-align: left; }
     h1 .outline { -webkit-text-stroke-width: 1.5px; }
@@ -592,8 +541,7 @@
     .dark .sec-note, footer .cta-note, footer .fine { color: #444 !important; }
     .proj { background: #fff !important; color: #000 !important; border: 1px solid #000 !important; }
     .proj p, .proj.alt p { color: #000 !important; }
-    .proj .go i { background: #fff !important; color: #000 !important; border: 1px solid #000; }
-    footer .cta span { color: #000; }
+    .proj { background: #fff !important; color: #000 !important; border-color: #000 !important; }
     section, header.hero { padding: 24px 0; }
     .entry { break-inside: avoid; }
     .proof { background: #fff !important; border-color: #000 !important; }
@@ -624,7 +572,7 @@
         <a href="#work">Work</a>
         <a href="#builder">Builder</a>
         <a href="#contact">Contact</a>
-        <a class="pill" href="/nate-thomas-resume.pdf">Résumé</a>
+        <a href="/nate-thomas-resume.pdf">Résumé</a>
       </div>
       <button class="theme-toggle" type="button" id="theme-toggle" data-mode="auto" aria-live="polite">
         <span class="ico ico-auto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></span>
@@ -641,10 +589,10 @@
 
   <header class="hero" id="top">
     <div class="badge-row">
-      <span class="badge">Toronto, ON</span>
       <span class="status"><i class="dot"></i>Always up for a conversation</span>
     </div>
     <h1>
+      <span class="who">Nate Thomas, Toronto</span>
       AI PM.<br>
       <span class="outline">Actually</span><br>
       <span class="serif-accent">builds</span> <span class="hl">things.</span>
@@ -659,12 +607,10 @@
         </div>
       </div>
       <div class="facts">
-        <div class="facts-head">At a glance</div>
         <div class="fact"><b>Currently</b><span>AI PM, Momentus Technologies</span></div>
-        <div class="fact"><b>Focus</b><span>Ask Momentus + AI platform</span></div>
-        <div class="fact"><b>Previously</b><span>Pendo · Cvent · Socotra</span></div>
-        <div class="fact"><b>After hours</b><span>StackKeep (founder) · TennisBud</span></div>
-        <div class="fact"><b>Based in</b><span>Toronto, ON</span></div>
+        <div class="fact"><b>Previously</b><span>Pendo, Cvent, Socotra</span></div>
+        <div class="fact"><b>Building</b><span>StackKeep, TennisBud</span></div>
+        <div class="fact"><b>Education</b><span>Ivey Business School</span></div>
       </div>
     </div>
   </header>
@@ -676,16 +622,7 @@
     <div class="stat"><b>$10M+</b><span>ARR unlocked in Fortune&nbsp;500 accounts by shipping multi-IdP SSO</span></div>
     <div class="stat"><b>+25%</b><span>Feature adoption from A/B testing six core product events</span></div>
     <div class="stat"><b>+10%</b><span>Adoption on Ask Momentus after a full UX overhaul</span></div>
-    <div class="stat"><b>+5</b><span>CSAT from an LLM onboarding agent — shipped in 2022</span></div>
-  </div>
-</div>
-
-<div class="toolkit">
-  <div class="wrap">
-    <span class="lbl">Toolkit</span>
-    <div class="terms">
-      <span>AI agents</span><span>Agent frameworks</span><span>Evals</span><span>LLM products</span><span>0 → 1</span><span>Platform</span><span>Enterprise SSO</span><span>i18n</span><span>A/B testing</span><span>SQL</span>
-    </div>
+    <div class="stat"><b>+5</b><span>CSAT from an LLM onboarding agent shipped in 2022</span></div>
   </div>
 </div>
 
@@ -693,12 +630,12 @@
 
   <section id="work">
     <div class="sec-head">
-      <h2 class="loud loud-title">What I've <span class="hl">shipped</span></h2>
+      <h2 class="loud loud-title">What I've shipped</h2>
       <span class="sec-note">and what it did</span>
     </div>
 
     <div class="entry">
-      <div class="yr"><span class="idx">01</span><span class="date">'26 — now</span></div>
+      <div class="yr"><span class="date">2026–now</span></div>
       <div>
         <h3>Momentus Technologies</h3>
         <div class="role">AI Product Manager</div>
@@ -706,12 +643,11 @@
       <div>
         <p class="desc">I own Ask Momentus, our flagship AI product. This year that's meant a full UX overhaul (<span class="num">+10% adoption</span>) and turning a single chatbot into an agent-building framework that other product teams now ship on.</p>
         <p class="desc">I also wrote the <span class="num">evals strategy</span> the company uses to figure out whether an AI feature is actually good. That turned out to be the harder problem.</p>
-        <div class="tags"><span class="tag">Flagship AI</span><span class="tag">Agent framework</span><span class="tag">Evals</span></div>
       </div>
     </div>
 
     <div class="entry">
-      <div class="yr"><span class="idx">02</span><span class="date">'25 — '26</span></div>
+      <div class="yr"><span class="date">2025–26</span></div>
       <div>
         <h3>Pendo</h3>
         <div class="role">PM, Platform &amp; Enterprise</div>
@@ -719,12 +655,11 @@
       <div>
         <p class="desc">Enterprise deals kept stalling on identity. I dug in with customers, found the blocker — multi-IdP SSO — made the case to leadership, and shipped federation for Okta, ADFS, and AzureAD. It was worth <span class="num">$10M+ ARR</span> in Fortune 500 accounts.</p>
         <p class="desc">Also led internationalization across the whole platform (<span class="num">+10% win rates</span> in Japan, Germany, LatAm) and shipped an enterprise console that cut setup time by <span class="num">40%</span>.</p>
-        <div class="tags"><span class="tag">0→1 enterprise</span><span class="tag">Multi-IdP SSO</span><span class="tag">i18n</span></div>
       </div>
     </div>
 
     <div class="entry">
-      <div class="yr"><span class="idx">03</span><span class="date">'22 — '24</span></div>
+      <div class="yr"><span class="date">2022–24</span></div>
       <div>
         <h3>Cvent</h3>
         <div class="role">Associate Product Manager</div>
@@ -732,7 +667,6 @@
       <div>
         <p class="desc">Led the 0-to-1 for an <span class="num">LLM onboarding agent</span> in 2022. It's live with thousands of customers now, <span class="num">+5 CSAT</span>.</p>
         <p class="desc">Other things I'm proud of: <span class="num">$500k+ ARR</span> recovered by catching buyer-user misalignment in SQL cohorts, and <span class="num">+25% feature adoption</span> from A/B testing six core product events.</p>
-        <div class="tags"><span class="tag">LLM agent</span><span class="tag">A/B testing</span><span class="tag">SQL</span></div>
       </div>
     </div>
   </section>
@@ -743,21 +677,21 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <h2 class="loud loud-title" style="color:var(--band-fg)">After <span class="hl">hours</span></h2>
+        <h2 class="loud loud-title" style="color:var(--band-fg)">After hours</h2>
         <span class="sec-note">things I build for fun, and occasionally for money</span>
       </div>
       <div class="proj-grid">
         <a class="proj" href="https://stackkeep.com" target="_blank" rel="noopener">
-          <span class="k">Founder — Agentic SaaS</span>
+          <span class="k">Founder</span>
           <h3>StackKeep</h3>
           <p>My startup. An agent that audits a company's Google Workspace, finds the SaaS seats nobody uses, and handles cleanup in Slack. Free audit — I charge 20% of verified savings, so I only make money when I save someone money. It's taught me more about building with AI than anything else, mostly by breaking.</p>
-          <span class="go"><i>stackkeep.com <span class="arw">→</span></i></span>
+          <span class="go">stackkeep.com</span>
         </a>
         <a class="proj alt" href="https://tennisbud.vercel.app" target="_blank" rel="noopener">
-          <span class="k">Side project — Open data</span>
+          <span class="k">Side project</span>
           <h3>TennisBud</h3>
           <p>I play tennis in Toronto, which mostly means fighting for courts. So I mapped every public one from the city's open data — lights, distance, court count — and added a heuristic that guesses how busy a park will be before you bike over.</p>
-          <span class="go"><i>tennisbud.vercel.app <span class="arw">→</span></i></span>
+          <span class="go">tennisbud.vercel.app</span>
         </a>
       </div>
     </section>
@@ -767,18 +701,16 @@
 
 <footer id="contact">
   <div class="wrap">
-    <div class="cta">Say <span>hi.</span></div>
-    <p class="cta-note">Always up for a conversation.</p>
+    <div class="cta">Say hi.</div>
+    <p class="cta-note">Email is the fastest way to reach me.</p>
     <div class="btns">
       <a class="btn" href="mailto:nathansamthomas@gmail.com">Email</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn ghost" href="https://stackkeep.com" target="_blank" rel="noopener">StackKeep</a>
-      <a class="btn ghost" href="/nate-thomas-resume.pdf">Résumé (PDF)</a>
     </div>
     <div class="fine">
-      <span>© 2026 Nate Thomas — Toronto, ON</span>
+      <span>© 2026 Nate Thomas</span>
       <span><a href="mailto:nathansamthomas@gmail.com">nathansamthomas@gmail.com</a></span>
-      <span><a href="#top">Back to top ↑</a></span>
+      <span><a href="#top">Back to top</a></span>
     </div>
   </div>
 </footer>
