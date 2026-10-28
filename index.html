@@ -128,7 +128,7 @@
     --dim: #6b6558;
     --rule: #ddd6c6;
 
-    /* The inverted bands (ticker, builder, footer) are their own surface.
+    /* The inverted bands (builder, footer) are their own surface.
        In light they're ink on paper; in dark they lift *off* the page rather
        than dissolving into it, so the page still reads as a stack of bands. */
     --band: #14130e;
@@ -230,7 +230,6 @@
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
   }
-  .hl { background: var(--lime); color: var(--on-lime); padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
   ::selection { background: var(--lime); color: var(--on-lime); }
 
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gut); }
@@ -249,18 +248,6 @@
     text-decoration: none;
   }
   .skip:focus { left: 0; }
-
-  /* ── ticker ─────────────────────────── */
-  .ticker {
-    background: var(--band); color: var(--lime);
-    font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
-    padding: 11px 0; overflow: hidden;
-  }
-  .ticker-track { display: flex; width: max-content; animation: scroll 44s linear infinite; }
-  .ticker-seq { display: flex; flex: none; }
-  .ticker-seq span { padding: 0 18px; white-space: nowrap; }
-  .ticker-seq span::after { content: "✳"; margin-left: 18px; color: var(--lime-deep); }
-  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ── nav ────────────────────────────── */
   .navbar {
@@ -332,19 +319,15 @@
   }
   h1 {
     font-weight: 900; text-transform: uppercase;
-    font-size: clamp(52px, 9.5vw, 128px);
-    line-height: 0.92; letter-spacing: -0.04em;
+    font-size: clamp(44px, 7.4vw, 104px);
+    line-height: 0.94; letter-spacing: -0.04em;
+    max-width: 11.5em; text-wrap: balance;
   }
   h1 .who {
     display: block; margin-bottom: clamp(14px, 2vw, 22px);
     font-family: Georgia, serif; font-weight: 400; font-style: normal;
-    font-size: clamp(24px, 3vw, 36px); line-height: 1.1;
+    font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1;
     text-transform: none; letter-spacing: -0.01em;
-  }
-  h1 .outline { color: transparent; -webkit-text-stroke: 2.5px var(--ink); }
-  h1 .serif-accent {
-    font-family: Georgia, serif; font-style: italic; font-weight: 400;
-    text-transform: none; letter-spacing: -0.02em;
   }
   .hero-grid {
     display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(40px, 6vw, 72px);
@@ -389,7 +372,12 @@
     display: block; font-size: clamp(36px, 5vw, 60px); font-weight: 900;
     letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
   }
+  .proof .stat { display: flex; flex-direction: column; }
   .proof .stat span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.45; color: var(--on-lime-dim); }
+  .proof .stat i {
+    display: block; margin-top: auto; padding-top: 14px;
+    font-family: Georgia, serif; font-size: 15px; color: var(--on-lime);
+  }
 
   /* ── sections ───────────────────────── */
   section { padding: var(--bay) 0; }
@@ -414,7 +402,7 @@
     font-family: Georgia, serif; font-style: italic; font-size: 17px; color: var(--dim);
   }
   .entry h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; }
-  .entry .role { font-size: 16px; color: var(--dim); margin-top: 10px; }
+  .entry .role { font-size: 17px; font-weight: 700; color: var(--ink-2); margin-top: 10px; }
   .entry .desc { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
   .entry .desc + .desc { margin-top: 14px; }
   .entry .desc .num { font-weight: 700; color: var(--ink); white-space: nowrap; }
@@ -497,7 +485,9 @@
     nav .links { gap: 18px; }
     /* stacked, the facts rule sits too close to the proof band's rule */
     .facts .fact:last-child { border-bottom: none; }
-    .hero-cta a { flex: 1 1 auto; text-align: center; }
+    .hero-cta { display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-cta a { text-align: center; padding-left: 12px; padding-right: 12px; }
+    .hero-cta a.primary { grid-column: 1 / -1; }
   }
   @media (max-width: 560px) {
     /* once the nav wraps, the toggle reorders up beside the logo so the links
@@ -509,15 +499,12 @@
     .entry { grid-template-columns: 1fr; gap: 18px; }
     .entry .yr { padding-top: 0; grid-row: auto; }
     .facts .fact { grid-template-columns: 1fr; gap: 2px; }
-    h1 { line-height: 1; } /* keeps "builds" clear of the THINGS highlight */
-    h1 .outline { -webkit-text-stroke-width: 1.5px; }
     .proof .wrap { grid-template-columns: 1fr; }
     .proof .stat + .stat { border-left: none; padding-left: 0; padding-top: 24px; border-top: 1px solid var(--on-lime-rule); }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .ticker-track { animation: none; }
     *, *::before, *::after {
       transition-duration: .01ms !important;
       animation-duration: .01ms !important;
@@ -525,10 +512,6 @@
     }
     .proj:hover, .proj:focus-visible,
     .proj.alt:hover, .proj.alt:focus-visible { transform: none; }
-  }
-
-  @media (forced-colors: active) {
-    h1 .outline { color: CanvasText; -webkit-text-stroke: 0; }
   }
 
   @media print {
@@ -546,7 +529,7 @@
       --lime-band: #fff !important; --grain: 0 !important;
     }
     body { background: #fff; color: #000; }
-    body::after, .ticker, .navbar, .skip { display: none; }
+    body::after, .navbar, .skip { display: none; }
     .dark, footer { background: #fff !important; color: #000 !important; }
     .dark .sec-note, footer .cta-note, footer .fine { color: #444 !important; }
     .proj { background: #fff !important; color: #000 !important; border: 1px solid #000 !important; }
@@ -564,22 +547,13 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track">
-  <div class="ticker-seq">
-    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
-  </div>
-  <div class="ticker-seq">
-    <span>Nate Thomas</span><span>AI Product</span><span>Ask Momentus</span><span>Agent Framework</span><span>Evals</span><span>StackKeep</span><span>TennisBud</span><span>Toronto</span>
-  </div>
-</div></div>
-
 <div class="navbar">
   <div class="wrap">
     <nav aria-label="Primary">
       <a class="logo" href="#top">Nate Thomas</a>
       <div class="links">
         <a href="#work">Work</a>
-        <a href="#builder">Builder</a>
+        <a href="#builder">Projects</a>
         <a href="#contact">Contact</a>
         <a href="/nate-thomas-resume.pdf">Résumé</a>
       </div>
@@ -602,9 +576,7 @@
     </div>
     <h1>
       <span class="who">Nate Thomas, Toronto</span>
-      AI PM.<br>
-      <span class="outline">Actually</span><br>
-      <span class="serif-accent">builds</span> <span class="hl">things.</span>
+      AI product manager who actually builds things.
     </h1>
     <div class="hero-grid">
       <div>
@@ -613,11 +585,13 @@
         <div class="hero-cta">
           <a class="primary" href="/nate-thomas-resume.pdf">Résumé (PDF)</a>
           <a class="secondary" href="mailto:nathansamthomas@gmail.com">Email me</a>
+          <a class="secondary" href="https://www.linkedin.com/in/nathansamthomas" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
       <div class="facts">
         <div class="fact"><b>Currently</b><span>AI PM, Momentus Technologies</span></div>
         <div class="fact"><b>Previously</b><span>Pendo, Cvent, Socotra</span></div>
+        <div class="fact"><b>Focus</b><span>AI agents, evals, enterprise platform</span></div>
         <div class="fact"><b>Building</b><span>StackKeep, TennisBud</span></div>
         <div class="fact"><b>Education</b><span>Ivey Business School</span></div>
       </div>
@@ -628,10 +602,10 @@
 
 <div class="proof">
   <div class="wrap">
-    <div class="stat"><b>$10M+</b><span>ARR unlocked in Fortune&nbsp;500 accounts by shipping multi-IdP SSO</span></div>
-    <div class="stat"><b>$500k+</b><span>ARR recovered by catching buyer-user misalignment in SQL cohorts</span></div>
-    <div class="stat"><b>+10%</b><span>Win rates in Japan, Germany, and LatAm after platform-wide i18n</span></div>
-    <div class="stat"><b>+25%</b><span>Feature adoption from A/B testing six core product events</span></div>
+    <div class="stat"><b>$10M+</b><span>ARR unlocked in Fortune&nbsp;500 accounts by shipping multi-IdP SSO</span><i>Pendo</i></div>
+    <div class="stat"><b>$500k+</b><span>ARR recovered by catching buyer-user misalignment in SQL cohorts</span><i>Cvent</i></div>
+    <div class="stat"><b>+10%</b><span>Win rates in Japan, Germany, and LatAm after platform-wide i18n</span><i>Pendo</i></div>
+    <div class="stat"><b>+25%</b><span>Feature adoption from A/B testing six core product events</span><i>Cvent</i></div>
   </div>
 </div>
 
@@ -686,8 +660,8 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <h2 class="loud loud-title">After hours</h2>
-        <span class="sec-note">things I build for fun, and occasionally for money</span>
+        <h2 class="loud loud-title">Side projects</h2>
+        <span class="sec-note">built after hours, for fun and occasionally for money</span>
       </div>
       <div class="proj-grid">
         <a class="proj" href="https://stackkeep.com" target="_blank" rel="noopener">
